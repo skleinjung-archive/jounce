@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jounce-app/jounce-app.iml" filepath="$PROJECT_DIR$/jounce-app/jounce-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jounce-parent/jounce-parent.iml" filepath="$PROJECT_DIR$/jounce-parent/jounce-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/luna-android/luna-android.iml" filepath="$PROJECT_DIR$/luna-android/luna-android.iml" />
+    </modules>
+  </component>
+</project>
