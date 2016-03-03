@@ -23,7 +23,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="jounce-app" />
-        <module name="luna-android" />
       </profile>
     </annotationProcessing>
   </component>
