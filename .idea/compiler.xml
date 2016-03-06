@@ -26,5 +26,11 @@
         <module name="luna-android" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jounce-app" target="1.8" />
+      <module name="jounce-parent" target="1.8" />
+      <module name="luna-android" target="1.8" />
+      <module name="luna-parent" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
