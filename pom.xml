@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>externals/luna</module>
         <module>jounce-parent</module>
         <module>jounce-app</module>
     </modules>
