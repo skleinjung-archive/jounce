@@ -1,0 +1,4 @@
+[submodule "externals/luna"]
+	path = externals/luna
+	url = git@github.com:skleinjung/luna.git
+	branch = master
