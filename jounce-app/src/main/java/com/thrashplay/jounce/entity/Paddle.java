@@ -38,7 +38,7 @@ public class Paddle implements Updateable, Renderable {
     @Override
     public void render(Graphics graphics) {
         Rectangle bounds = getBounds();
-        graphics.fillRect(bounds.getLeftEdge(), bounds.getTopEdge(), bounds.getWidth(), bounds.getHeight(), 0xffffffff);
+        graphics.fillRect(bounds.getLeftEdge(), bounds.getTopEdge(), bounds.getWidth(), bounds.getHeight(), 0xffff0000);
     }
 
     @Override
