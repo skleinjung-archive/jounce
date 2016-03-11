@@ -12,14 +12,14 @@
 
     <groupId>com.thrashplay.jounce</groupId>
     <artifactId>jounce-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
 
     <scm>
         <url>https://github.com/skleinjung/jounce</url>
         <connection>scm:git:git@github.com:skleinjung/jounce.git</connection>
         <developerConnection>scm:git:git@github.com:skleinjung/jounce.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.0.1</tag>
     </scm>
 
     <modules>
