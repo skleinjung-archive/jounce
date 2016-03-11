@@ -3,8 +3,8 @@ package com.thrashplay.jounce.screen;
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
-import com.thrashplay.luna.android.engine.Screen;
-import com.thrashplay.luna.android.graphics.renderable.ClearScreen;
+import com.thrashplay.luna.api.engine.Screen;
+import com.thrashplay.luna.renderable.ClearScreen;
 
 /**
  * TODO: Add class documentation

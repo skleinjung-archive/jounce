@@ -3,8 +3,8 @@ package com.thrashplay.jounce.entity.ai;
 import com.thrashplay.jounce.Rectangle;
 import com.thrashplay.jounce.entity.Ball;
 import com.thrashplay.jounce.entity.Paddle;
-import com.thrashplay.luna.android.engine.Updateable;
-import com.thrashplay.luna.android.graphics.Graphics;
+import com.thrashplay.luna.api.engine.Updateable;
+import com.thrashplay.luna.api.graphics.Graphics;
 
 /**
  * TODO: Add class documentation

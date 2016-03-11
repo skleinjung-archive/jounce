@@ -4,9 +4,9 @@ import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
 import com.thrashplay.jounce.entity.ai.BalancedAiPaddleController;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
-import com.thrashplay.luna.android.engine.Screen;
-import com.thrashplay.luna.android.engine.ScreenManager;
-import com.thrashplay.luna.android.graphics.renderable.ClearScreen;
+import com.thrashplay.luna.api.engine.Screen;
+import com.thrashplay.luna.api.engine.ScreenManager;
+import com.thrashplay.luna.renderable.ClearScreen;
 import com.thrashplay.luna.android.input.TouchManager;
 
 /**
