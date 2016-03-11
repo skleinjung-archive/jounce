@@ -41,8 +41,8 @@ public class Ball implements Renderable, Updateable {
         this.jounce = jounce;
         this.leftPaddle = leftPaddle;
         this.rightPaddle = rightPaddle;
-        paddleHitSound = jounce.getSoundManager().createSoundEffect("sfx/paddle_hit.wav");
-        wallHitSound = jounce.getSoundManager().createSoundEffect("sfx/wall_hit.wav");
+        paddleHitSound = jounce.getSoundManager().createSoundEffect("sfx/paddle_hit.mp3");
+        wallHitSound = jounce.getSoundManager().createSoundEffect("sfx/wall_hit.mp3");
         radius = 10 * jounce.getWidthScalar();
         reset();
     }

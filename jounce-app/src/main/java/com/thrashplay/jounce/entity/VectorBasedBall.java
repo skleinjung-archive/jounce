@@ -40,8 +40,8 @@ public class VectorBasedBall implements Renderable, Updateable {
         this.jounce = jounce;
         this.leftPaddle = leftPaddle;
         this.rightPaddle = rightPaddle;
-        this.wallBounceSound = soundManager.createSoundEffect("sfx/wall_hit.wav");
-        this.paddleHitSound = soundManager.createSoundEffect("sfx/paddle_hit.wav");
+        this.wallBounceSound = soundManager.createSoundEffect("sfx/wall_hit.mp3");
+        this.paddleHitSound = soundManager.createSoundEffect("sfx/paddle_hit.mp3");
         reset();
     }
 

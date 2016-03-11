@@ -28,7 +28,7 @@ public class Score implements Renderable, Updateable {
         this.jounce = jounce;
         this.ball = ball;
 
-        outOfBoundsSound = jounce.getSoundManager().createSoundEffect("sfx/out_of_bounds.wav");
+        outOfBoundsSound = jounce.getSoundManager().createSoundEffect("sfx/out_of_bounds.mp3");
     }
 
     @Override
