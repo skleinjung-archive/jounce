@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jounce-aggregator.iml" filepath="$PROJECT_DIR$/jounce-aggregator.iml" />
       <module fileurl="file://$PROJECT_DIR$/jounce-app/jounce-app.iml" filepath="$PROJECT_DIR$/jounce-app/jounce-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jounce-parent/jounce-parent.iml" filepath="$PROJECT_DIR$/jounce-parent/jounce-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/externals/luna/luna-aggregator.iml" filepath="$PROJECT_DIR$/externals/luna/luna-aggregator.iml" />
       <module fileurl="file://$PROJECT_DIR$/externals/luna/luna-android/luna-android.iml" filepath="$PROJECT_DIR$/externals/luna/luna-android/luna-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/externals/luna/luna-parent/luna-parent.iml" filepath="$PROJECT_DIR$/externals/luna/luna-parent/luna-parent.iml" />

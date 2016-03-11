@@ -8,7 +8,7 @@
         <groupId>com.thrashplay.jounce</groupId>
         <artifactId>jounce-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../jounce-parent/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>jounce-app</artifactId>
@@ -126,8 +126,19 @@
                                 <inputApk>${project.build.directory}/${project.build.finalName}.apk</inputApk>
                                 <outputApk>${project.build.directory}/${project.build.finalName}-signed-aligned.apk</outputApk>
                             </zipalign>
+                            <!--<manifest>-->
+                                <!--<debuggable>false</debuggable>-->
+                                <!--<versionCodeAutoIncrement>true</versionCodeAutoIncrement>-->
+                            <!--</manifest>-->
                         </configuration>
                         <executions>
+                            <!--<execution>-->
+                                <!--<id>manifestUpdate</id>-->
+                                <!--<phase>process-resources</phase>-->
+                                <!--<goals>-->
+                                    <!--<goal>manifest-update</goal>-->
+                                <!--</goals>-->
+                            <!--</execution>-->
                             <execution>
                                 <id>alignApk</id>
                                 <phase>package</phase>
