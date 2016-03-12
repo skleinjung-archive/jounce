@@ -7,6 +7,7 @@ import com.thrashplay.luna.android.engine.LunaGame;
 import com.thrashplay.luna.android.graphics.LunaSurfaceView;
 import com.thrashplay.luna.android.input.AndroidTouchManager;
 import com.thrashplay.luna.android.sound.AndroidSoundManager;
+import com.thrashplay.luna.api.input.BackButtonManager;
 import com.thrashplay.luna.engine.LunaGameConfig;
 import com.thrashplay.luna.math.Floats;
 
@@ -17,7 +18,6 @@ import com.thrashplay.luna.math.Floats;
  */
 public class MainActivity extends LunaGame implements Jounce {
 
-    private Rectangle gameBoardDimensions;
     private AndroidTouchManager touchManager;
     private AndroidSoundManager soundManager;
 
@@ -49,6 +49,11 @@ public class MainActivity extends LunaGame implements Jounce {
     @Override
     public AndroidSoundManager getSoundManager() {
         return soundManager;
+    }
+
+    @Override
+    public BackButtonManager getBackButtonManager() {
+        return this;
     }
 
     @Override
@@ -102,8 +107,7 @@ public class MainActivity extends LunaGame implements Jounce {
             height = (int) (width / fourByThree);
         }
 
-        gameBoardDimensions = new Rectangle((view.getWidth() - width) / 2, (view.getHeight() - height) / 2, width, height);
-        return gameBoardDimensions;
+        return new Rectangle((view.getWidth() - width) / 2, (view.getHeight() - height) / 2, width, height);
     }
 
     @Override

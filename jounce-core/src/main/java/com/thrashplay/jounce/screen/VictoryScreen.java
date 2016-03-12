@@ -2,7 +2,6 @@ package com.thrashplay.jounce.screen;
 
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
-import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
 import com.thrashplay.luna.api.engine.EntityManagerScreen;
 import com.thrashplay.luna.api.input.BackButtonListener;
 import com.thrashplay.luna.renderable.ClearScreen;
@@ -12,12 +11,12 @@ import com.thrashplay.luna.renderable.ClearScreen;
  *
  * @author Sean Kleinjung
  */
-public class GameScreen extends EntityManagerScreen implements BackButtonListener {
+public class VictoryScreen extends EntityManagerScreen implements BackButtonListener {
 
     private Jounce jounce;
-    private boolean backButtonPressed = false;
+    private boolean backButtonPressed;
 
-    public GameScreen(Jounce jounce) {
+    public VictoryScreen(Jounce jounce) {
         this.jounce = jounce;
     }
 
@@ -29,31 +28,19 @@ public class GameScreen extends EntityManagerScreen implements BackButtonListene
 
         // the paddles
         Paddle leftPaddle = new Paddle(jounce, Player.Left);
-        entityManager.addEntity(leftPaddle);
         Paddle rightPaddle = new Paddle(jounce, Player.Right);
-        entityManager.addEntity(rightPaddle);
 
         // the ball
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
-        entityManager.addEntity(ball);
-//        entityManager.addEntity(new BallTrails(ball));
-
-        // paddle controllers
-        entityManager.addEntity(new TouchPaddleController(jounce, leftPaddle));
-//        entityManager.addEntity(new PerfectAiPaddleController(rightPaddle, ball));
-//        entityManager.addEntity(new BalancedAiPaddleController(jounce, rightPaddle, ball));
-//        entityManager.addEntity(new BehaviorBasedPaddleController(jounce, rightPaddle, ball));
-        entityManager.addEntity(new BallChasingPaddleController(rightPaddle, ball));
 
         // the score
         entityManager.addEntity(new Score(jounce, ball));
 
-//        entityManager.addEntity(new DebugString(jounce, ball, leftPaddle));
+        // the victory text
+        entityManager.addEntity(new VictoryText(jounce));
 
-        jounce.getBackButtonManager().addBackButtonListener(this);
-
-        jounce.clearScores();
         backButtonPressed = false;
+        jounce.getBackButtonManager().addBackButtonListener(this);
     }
 
     @Override
@@ -66,8 +53,6 @@ public class GameScreen extends EntityManagerScreen implements BackButtonListene
     public String getNextScreen() {
         if (backButtonPressed) {
             return "title";
-        } else if (jounce.getLeftPlayerScore() > 10 || jounce.getRightPlayerScore() > 10) {
-            return "victory";
         } else {
             return super.getNextScreen();
         }

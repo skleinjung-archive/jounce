@@ -3,6 +3,8 @@ package com.thrashplay.jounce.desktop;
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.Rectangle;
 import com.thrashplay.jounce.entity.Player;
+import com.thrashplay.luna.api.input.BackButtonListener;
+import com.thrashplay.luna.api.input.BackButtonManager;
 import com.thrashplay.luna.api.input.TouchManager;
 import com.thrashplay.luna.api.sound.SoundManager;
 import com.thrashplay.luna.desktop.LunaCanvas;
@@ -38,6 +40,22 @@ public class DesktopJounce implements Jounce {
     @Override
     public SoundManager getSoundManager() {
         return soundManager;
+    }
+
+    @Override
+    public BackButtonManager getBackButtonManager() {
+        // noop, since there is no back button on desktop versions - todo, maybe implement this with escape
+        return new BackButtonManager() {
+            @Override
+            public void addBackButtonListener(BackButtonListener listener) {
+
+            }
+
+            @Override
+            public void removeBackButtonListener(BackButtonListener listener) {
+
+            }
+        };
     }
 
     @Override

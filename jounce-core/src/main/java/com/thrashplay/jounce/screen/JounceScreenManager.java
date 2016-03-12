@@ -10,8 +10,8 @@ import com.thrashplay.luna.engine.DefaultScreenManager;
  */
 public class JounceScreenManager extends DefaultScreenManager {
     public JounceScreenManager(Jounce jounce) {
-        TitleScreen titleScreen = new TitleScreen(jounce);
-        registerScreen("title", titleScreen);
+        registerScreen("title", new TitleScreen(jounce));
         registerScreen("game", new GameScreen(jounce));
+        registerScreen("victory", new VictoryScreen(jounce));
     }
 }
