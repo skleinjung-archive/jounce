@@ -3,7 +3,7 @@ package com.thrashplay.jounce.screen;
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
-import com.thrashplay.luna.api.engine.Screen;
+import com.thrashplay.luna.api.engine.EntityManagerScreen;
 import com.thrashplay.luna.renderable.ClearScreen;
 
 /**
@@ -11,8 +11,15 @@ import com.thrashplay.luna.renderable.ClearScreen;
  *
  * @author Sean Kleinjung
  */
-public class GameScreen extends Screen {
+public class GameScreen extends EntityManagerScreen {
+
+    private Jounce jounce;
+
     public GameScreen(Jounce jounce) {
+        this.jounce = jounce;
+    }
+
+    public void initialize() {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
 //        entityManager.addEntity(new FpsDisplay());
@@ -42,5 +49,10 @@ public class GameScreen extends Screen {
 //        entityManager.addEntity(new DebugString(jounce, ball, leftPaddle));
 
         jounce.clearScores();
+    }
+
+    @Override
+    public void shutdown() {
+        entityManager.removeAll();
     }
 }

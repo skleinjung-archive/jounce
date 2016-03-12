@@ -1,12 +1,12 @@
 package com.thrashplay.jounce.entity;
 
-import android.graphics.Paint;
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.android.sound.SoundEffect;
 import com.thrashplay.luna.api.engine.Updateable;
+import com.thrashplay.luna.api.graphics.Alignment;
 import com.thrashplay.luna.api.graphics.Graphics;
 import com.thrashplay.luna.api.graphics.Renderable;
-import com.thrashplay.luna.android.sound.SoundEffect;
 
 /**
  * TODO: Add class documentation
@@ -71,7 +71,7 @@ public class Score implements Renderable, Updateable {
         int centerX = (int) (bounds.getLeftEdge() + (bounds.getWidth() / 2f));
         int top = bounds.getTopEdge();
 
-        graphics.drawString(String.valueOf(jounce.getLeftPlayerScore()), centerX - 100, top + 115, 0xffffffff, 72, Paint.Align.RIGHT);
-        graphics.drawString(String.valueOf(jounce.getRightPlayerScore()), centerX + 100, top + 115, 0xffffffff, 72, Paint.Align.LEFT);
+        graphics.drawString(String.valueOf(jounce.getLeftPlayerScore()), centerX - 100, top + 115, 0xffffffff, 72, Alignment.Right);
+        graphics.drawString(String.valueOf(jounce.getRightPlayerScore()), centerX + 100, top + 115, 0xffffffff, 72, Alignment.Left);
     }
 }

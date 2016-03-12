@@ -4,22 +4,23 @@ import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
 import com.thrashplay.jounce.entity.ai.BalancedAiPaddleController;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
-import com.thrashplay.luna.api.engine.Screen;
-import com.thrashplay.luna.api.engine.ScreenManager;
+import com.thrashplay.luna.api.engine.EntityManagerScreen;
 import com.thrashplay.luna.renderable.ClearScreen;
-import com.thrashplay.luna.android.input.TouchManager;
 
 /**
  * TODO: Add class documentation
  *
  * @author Sean Kleinjung
  */
-public class TitleScreen extends Screen {
+public class TitleScreen extends EntityManagerScreen {
     private Jounce jounce;
-    private TouchManager touchManager;
-    private ScreenManager screenManager;
 
     public TitleScreen(Jounce jounce) {
+        this.jounce = jounce;
+    }
+
+    @Override
+    public void initialize() {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
         entityManager.addEntity(new GameBoard(jounce));
@@ -42,18 +43,20 @@ public class TitleScreen extends Screen {
         entityManager.addEntity(new Score(jounce, ball));
         entityManager.addEntity(new TitleText(jounce));
 
-        this.jounce = jounce;
-        touchManager = jounce.getTouchManager();
-        screenManager = jounce.getScreenManager();
-
         jounce.clearScores();
     }
 
     @Override
-    protected void doScreenUpdate() {
-        super.doScreenUpdate();
-        if (touchManager.isDown()) {
-            screenManager.setCurrentScreen(new GameScreen(jounce));
+    public void shutdown() {
+        entityManager.removeAll();
+    }
+
+    @Override
+    public String getNextScreen() {
+        if (jounce.getTouchManager().isDown()) {
+            return "game";
+        } else {
+            return super.getNextScreen();
         }
     }
 }

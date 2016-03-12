@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import com.thrashplay.jounce.entity.Player;
-import com.thrashplay.jounce.screen.TitleScreen;
+import com.thrashplay.jounce.screen.JounceScreenManager;
 import com.thrashplay.luna.android.engine.LunaGame;
 import com.thrashplay.luna.android.graphics.LunaSurfaceView;
 import com.thrashplay.luna.android.input.TouchManager;
 import com.thrashplay.luna.android.sound.SoundManager;
+import com.thrashplay.luna.api.engine.ScreenManager;
 import com.thrashplay.luna.math.Floats;
 
 /**
@@ -35,12 +36,17 @@ public class MainActivity extends LunaGame implements Jounce {
             @Override
             public void onGlobalLayout() {
                 content.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                getScreenManager().setCurrentScreen(new TitleScreen(MainActivity.this));
+                getScreenManager().setCurrentScreen("title");
             }
         });
 
         touchManager = new TouchManager(getSurfaceView());
         soundManager = new SoundManager(this);
+    }
+
+    @Override
+    protected ScreenManager createScreenManager() {
+        return new JounceScreenManager(this);
     }
 
     @Override
