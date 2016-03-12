@@ -2,7 +2,7 @@ package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.Rectangle;
-import com.thrashplay.luna.android.sound.SoundEffect;
+import com.thrashplay.luna.api.sound.SoundEffect;
 import com.thrashplay.luna.api.engine.Updateable;
 import com.thrashplay.luna.api.graphics.Alignment;
 import com.thrashplay.luna.api.graphics.Graphics;

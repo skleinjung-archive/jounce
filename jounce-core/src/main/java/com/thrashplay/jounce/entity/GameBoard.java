@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity;
 
-import com.thrashplay.jounce.Rectangle;
 import com.thrashplay.jounce.Jounce;
+import com.thrashplay.jounce.Rectangle;
 import com.thrashplay.luna.api.graphics.Graphics;
 import com.thrashplay.luna.api.graphics.Renderable;
 

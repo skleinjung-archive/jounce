@@ -25,7 +25,9 @@
     </scm>
 
     <modules>
+        <module>jounce-core</module>
         <module>jounce-app</module>
+        <module>jounce-desktop</module>
     </modules>
 
     <build>

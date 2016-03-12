@@ -1,15 +1,13 @@
 package com.thrashplay.jounce;
 
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewTreeObserver;
 import com.thrashplay.jounce.entity.Player;
 import com.thrashplay.jounce.screen.JounceScreenManager;
 import com.thrashplay.luna.android.engine.LunaGame;
 import com.thrashplay.luna.android.graphics.LunaSurfaceView;
-import com.thrashplay.luna.android.input.TouchManager;
-import com.thrashplay.luna.android.sound.SoundManager;
-import com.thrashplay.luna.api.engine.ScreenManager;
+import com.thrashplay.luna.android.input.AndroidTouchManager;
+import com.thrashplay.luna.android.sound.AndroidSoundManager;
+import com.thrashplay.luna.engine.LunaGameConfig;
 import com.thrashplay.luna.math.Floats;
 
 /**
@@ -20,8 +18,8 @@ import com.thrashplay.luna.math.Floats;
 public class MainActivity extends LunaGame implements Jounce {
 
     private Rectangle gameBoardDimensions;
-    private TouchManager touchManager;
-    private SoundManager soundManager;
+    private AndroidTouchManager touchManager;
+    private AndroidSoundManager soundManager;
 
     private Player lastPlayerToScore = null;
     private int leftPlayerScore = 0;
@@ -31,31 +29,25 @@ public class MainActivity extends LunaGame implements Jounce {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final View content = findViewById(android.R.id.content);
-        content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                content.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                getScreenManager().setCurrentScreen("title");
-            }
-        });
-
-        touchManager = new TouchManager(getSurfaceView());
-        soundManager = new SoundManager(this);
+        touchManager = new AndroidTouchManager(getSurfaceView());
+        soundManager = new AndroidSoundManager(this);
     }
 
     @Override
-    protected ScreenManager createScreenManager() {
-        return new JounceScreenManager(this);
+    protected LunaGameConfig getGameConfig() {
+        LunaGameConfig config = new LunaGameConfig();
+        config.setScreenManager(new JounceScreenManager(this));
+        config.setDefaultScreen("title");
+        return config;
     }
 
     @Override
-    public TouchManager getTouchManager() {
+    public AndroidTouchManager getTouchManager() {
         return touchManager;
     }
 
     @Override
-    public SoundManager getSoundManager() {
+    public AndroidSoundManager getSoundManager() {
         return soundManager;
     }
 
