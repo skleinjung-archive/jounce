@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.thrashplay.luna</groupId>
             <artifactId>luna-android</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
