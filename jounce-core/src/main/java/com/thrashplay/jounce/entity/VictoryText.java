@@ -2,7 +2,6 @@ package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.Rectangle;
-import com.thrashplay.luna.api.graphics.Alignment;
 import com.thrashplay.luna.api.graphics.Graphics;
 import com.thrashplay.luna.api.graphics.Renderable;
 
@@ -27,7 +26,7 @@ public class VictoryText implements Renderable {
         } else {
             message = "AI Wins";
         }
-        graphics.drawString(message, gameBoardBounds.getCenterX(), gameBoardBounds.getBottomEdge() - 65, 0xffffffff, 108, Alignment.Center);
-        graphics.drawString("Use the back button to play again", gameBoardBounds.getCenterX(), gameBoardBounds.getBottomEdge() - 25, 0xffffffff, 24, Alignment.Center);
+        graphics.drawString(message, gameBoardBounds.getCenterX(), gameBoardBounds.getBottomEdge() - 65, 0xffffffff, 108, Graphics.HorizontalAlignment.Center);
+        graphics.drawString("Use the back button to play again", gameBoardBounds.getCenterX(), gameBoardBounds.getBottomEdge() - 25, 0xffffffff, 24, Graphics.HorizontalAlignment.Center);
     }
 }
