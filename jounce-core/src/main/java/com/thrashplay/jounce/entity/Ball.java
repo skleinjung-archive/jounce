@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.sound.SoundEffect;
 import com.thrashplay.luna.api.engine.Updateable;
 import com.thrashplay.luna.api.graphics.Graphics;
@@ -84,15 +84,15 @@ public class Ball implements Renderable, Updateable {
 
         if (jounce.getLastPlayerToScore() == Player.Left) {
             // serve from the right
-            x = Random.getInteger(gameBoardDimensions.getCenterX() + 50 + (int) radius, gameBoardDimensions.getRightEdge() - 50);
+            x = Random.getInteger(gameBoardDimensions.getCenterX() + 50 + (int) radius, gameBoardDimensions.getRight() - 50);
             angle = Random.getInteger(2) == 0 ? 135 : 225;
         } else {
             // serve from the left
-            x = Random.getInteger(gameBoardDimensions.getLeftEdge() + 50 + (int) radius, gameBoardDimensions.getCenterX() - 50);
+            x = Random.getInteger(gameBoardDimensions.getLeft() + 50 + (int) radius, gameBoardDimensions.getCenterX() - 50);
             angle = Random.getInteger(2) == 0 ? 45 : 315;
         }
 
-        y = Random.getInteger(gameBoardDimensions.getTopEdge() + 15, gameBoardDimensions.getBottomEdge() - 15);
+        y = Random.getInteger(gameBoardDimensions.getTop() + 15, gameBoardDimensions.getBottom() - 15);
         speed = getIniitalBallSpeed();
     }
 
@@ -113,8 +113,8 @@ public class Ball implements Renderable, Updateable {
         y += velocityY;
 
         Rectangle gameBoardDimensions = jounce.getGameBoardDimensions();
-        handleWallCollision(gameBoardDimensions.getTopEdge() + 5);
-        handleWallCollision(gameBoardDimensions.getBottomEdge() - 5);
+        handleWallCollision(gameBoardDimensions.getTop() + 5);
+        handleWallCollision(gameBoardDimensions.getBottom() - 5);
         handlePaddleCollision(leftPaddle);
         handlePaddleCollision(rightPaddle);
     }
@@ -147,17 +147,17 @@ public class Ball implements Renderable, Updateable {
 
     private void handlePaddleCollision(Paddle paddle) {
         Rectangle paddleBounds = paddle.getBounds();
-        boolean nowAbovePaddle = y + radius < paddleBounds.getTopEdge();
-        boolean previouslyAbovePaddle = oldY + radius < paddleBounds.getTopEdge();
-        boolean nowBelowPaddle = y - radius > paddleBounds.getBottomEdge();
-        boolean previouslyBelowPaddle = oldY - radius > paddleBounds.getBottomEdge();
+        boolean nowAbovePaddle = y + radius < paddleBounds.getTop();
+        boolean previouslyAbovePaddle = oldY + radius < paddleBounds.getTop();
+        boolean nowBelowPaddle = y - radius > paddleBounds.getBottom();
+        boolean previouslyBelowPaddle = oldY - radius > paddleBounds.getBottom();
         if ((nowAbovePaddle && previouslyAbovePaddle) || (nowBelowPaddle && previouslyBelowPaddle)) {
             return;
         }
 
         if (angle > 90 && angle < 270) {
             // we are moving left
-            int collisionX = paddleBounds.getRightEdge();
+            int collisionX = paddleBounds.getRight();
 
             boolean nowLeftOfTheLine = x - radius < collisionX;
             boolean previouslyLeftOfTheLine = oldX - radius < collisionX;
@@ -168,7 +168,7 @@ public class Ball implements Renderable, Updateable {
             }
         } else if (angle < 90 || angle > 270) {
             // we are moving right
-            int collisionX = paddleBounds.getLeftEdge();
+            int collisionX = paddleBounds.getLeft();
 
             boolean nowRightOfTheLine = x + radius > collisionX;
             boolean previouslyRightOfTheLine = oldX + radius > collisionX;
@@ -192,7 +192,7 @@ public class Ball implements Renderable, Updateable {
      */
     private void updateMovementAfterPaddleCollision(Paddle paddle, boolean movingRight) {
         Rectangle bounds = paddle.getBounds();
-        float zonePercent = (y - bounds.getTopEdge()) / bounds.getHeight();
+        float zonePercent = (y - bounds.getTop()) / bounds.getHeight();
         if (movingRight) {
             angle = Angles.normalize(60 - (120 * zonePercent));
         } else {

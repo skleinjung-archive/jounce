@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.graphics.Graphics;
 import com.thrashplay.luna.api.graphics.Renderable;
 
@@ -20,7 +20,7 @@ public class TitleText implements Renderable {
     @Override
     public void render(Graphics graphics) {
         Rectangle gameBoardBounds = jounce.getGameBoardDimensions();
-        graphics.drawString("JOUNCE", gameBoardBounds.getCenterX(), gameBoardBounds.getBottomEdge() - 65, 0xffffffff, 108, Graphics.HorizontalAlignment.Center);
-        graphics.drawString("Touch the screen to play", gameBoardBounds.getCenterX(), gameBoardBounds.getBottomEdge() - 25, 0xffffffff, 24, Graphics.HorizontalAlignment.Center);
+        graphics.drawString("JOUNCE", gameBoardBounds.getCenterX(), gameBoardBounds.getBottom() - 65, 0xffffffff, 108, Graphics.HorizontalAlignment.Center);
+        graphics.drawString("Touch the screen to play", gameBoardBounds.getCenterX(), gameBoardBounds.getBottom() - 25, 0xffffffff, 24, Graphics.HorizontalAlignment.Center);
     }
 }

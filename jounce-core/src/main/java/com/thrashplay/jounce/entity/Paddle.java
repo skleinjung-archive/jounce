@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.engine.Updateable;
 import com.thrashplay.luna.api.graphics.Graphics;
 import com.thrashplay.luna.api.graphics.Renderable;
@@ -38,7 +38,7 @@ public class Paddle implements Updateable, Renderable {
     @Override
     public void render(Graphics graphics) {
         Rectangle bounds = getBounds();
-        graphics.fillRect(bounds.getLeftEdge(), bounds.getTopEdge(), bounds.getWidth(), bounds.getHeight(), 0xffffffff);
+        graphics.fillRect(bounds.getLeft(), bounds.getTop(), bounds.getWidth(), bounds.getHeight(), 0xffffffff);
     }
 
     @Override
@@ -48,13 +48,13 @@ public class Paddle implements Updateable, Renderable {
         
         Rectangle gameBoardBounds = jounce.getGameBoardDimensions();
         Rectangle bounds = getBounds();
-        if (bounds.getTopEdge() < gameBoardBounds.getTopEdge() + 5) {
-            y = gameBoardBounds.getTopEdge() + 5;
+        if (bounds.getTop() < gameBoardBounds.getTop() + 5) {
+            y = gameBoardBounds.getTop() + 5;
             // stop when reaching an edge
             acceleration = 0;
             velocity = 0;
-        } else if (bounds.getBottomEdge() > gameBoardBounds.getBottomEdge() - 5) {
-            y = gameBoardBounds.getBottomEdge() - 5 - bounds.getHeight();
+        } else if (bounds.getBottom() > gameBoardBounds.getBottom() - 5) {
+            y = gameBoardBounds.getBottom() - 5 - bounds.getHeight();
             // stop when reaching an edge
             acceleration = 0;
             velocity = 0;
@@ -97,11 +97,11 @@ public class Paddle implements Updateable, Renderable {
         int left;
         switch (player) {
             case Left:
-                left = jounce.getGameBoardDimensions().getLeftEdge() + 8;
+                left = jounce.getGameBoardDimensions().getLeft() + 8;
                 break;
 
             case Right:
-                left = jounce.getGameBoardDimensions().getRightEdge() - 8 - 15;
+                left = jounce.getGameBoardDimensions().getRight() - 8 - 15;
                 break;
 
             default:

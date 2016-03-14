@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.graphics.Graphics;
 import com.thrashplay.luna.api.graphics.Renderable;
 
@@ -27,6 +27,6 @@ public class DebugString implements Renderable {
         Rectangle bounds = jounce.getGameBoardDimensions();
 
         String string = String.format("Ball {xVel=%d, yVel=%d}; Paddle {velocity=%d}", ball.getVelocityX(), ball.getVelocityY(), paddle.getVelocity());
-        graphics.drawString(string, bounds.getLeftEdge() + 5, bounds.getBottomEdge() - 15, 0xffff0000, 18);
+        graphics.drawString(string, bounds.getLeft() + 5, bounds.getBottom() - 15, 0xffff0000, 18);
     }
 }

@@ -1,6 +1,7 @@
 package com.thrashplay.jounce;
 
 import com.thrashplay.jounce.entity.Player;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.input.BackButtonManager;
 import com.thrashplay.luna.api.input.TouchManager;
 import com.thrashplay.luna.api.sound.SoundManager;

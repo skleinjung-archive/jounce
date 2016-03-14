@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.sound.SoundEffect;
 import com.thrashplay.luna.api.engine.Updateable;
 import com.thrashplay.luna.api.graphics.Graphics;
@@ -46,7 +46,7 @@ public class Score implements Renderable, Updateable {
         } else {
             Rectangle gameBoardDimensions = jounce.getGameBoardDimensions();
 
-            if (ball.getX() < gameBoardDimensions.getLeftEdge()) {
+            if (ball.getX() < gameBoardDimensions.getLeft()) {
                 jounce.addPointForRightPlayer();
                 scoreTimestamp = System.currentTimeMillis();
                 originalRadius = ball.getRadius();
@@ -54,7 +54,7 @@ public class Score implements Renderable, Updateable {
                 outOfBoundsSound.play(1.0f);
             }
 
-            if (ball.getX() > gameBoardDimensions.getRightEdge()) {
+            if (ball.getX() > gameBoardDimensions.getRight()) {
                 jounce.addPointForLeftPlayer();
                 scoreTimestamp = System.currentTimeMillis();
                 originalRadius = ball.getRadius();
@@ -67,8 +67,8 @@ public class Score implements Renderable, Updateable {
     @Override
     public void render(Graphics graphics) {
         Rectangle bounds = jounce.getGameBoardDimensions();
-        int centerX = (int) (bounds.getLeftEdge() + (bounds.getWidth() / 2f));
-        int top = bounds.getTopEdge();
+        int centerX = (int) (bounds.getLeft() + (bounds.getWidth() / 2f));
+        int top = bounds.getTop();
 
         graphics.drawString(String.valueOf(jounce.getLeftPlayerScore()), centerX - 100, top + 115, 0xffffffff, 72, Graphics.HorizontalAlignment.Right);
         graphics.drawString(String.valueOf(jounce.getRightPlayerScore()), centerX + 100, top + 115, 0xffffffff, 72, Graphics.HorizontalAlignment.Left);

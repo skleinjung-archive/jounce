@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity.ai;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.jounce.entity.Ball;
 import com.thrashplay.jounce.entity.Paddle;
 import com.thrashplay.luna.api.engine.Updateable;
@@ -45,7 +45,7 @@ public class BehaviorBasedPaddleController implements Updateable, Renderable {
         if (currentBehavior instanceof MoveToPositionBehavior) {
             MoveToPositionBehavior behavior = (MoveToPositionBehavior) currentBehavior;
             Rectangle gameBoardDimensions = jounce.getGameBoardDimensions();
-            graphics.drawLine(gameBoardDimensions.getLeftEdge(), behavior.targetY, gameBoardDimensions.getRightEdge(), behavior.targetY, 0xffff0000);
+            graphics.drawLine(gameBoardDimensions.getLeft(), behavior.targetY, gameBoardDimensions.getRight(), behavior.targetY, 0xffff0000);
         }
     }
 
@@ -66,13 +66,13 @@ public class BehaviorBasedPaddleController implements Updateable, Renderable {
             Rectangle paddleBounds = paddle.getBounds();
 
             System.out.println("paddleBounds.getCenterY(): " + paddleBounds.getCenterY() + ", target=" + targetY);
-            if (paddleBounds.getTopEdge() <= targetY && paddleBounds.getBottomEdge() >= targetY) {
+            if (paddleBounds.getTop() <= targetY && paddleBounds.getBottom() >= targetY) {
                 paddle.setAcceleration(0);
                 paddle.setVelocity(0);
                 complete = true;
-            } else if (paddleBounds.getTopEdge() > targetY) {
+            } else if (paddleBounds.getTop() > targetY) {
                 paddle.setVelocity(-paddle.getMaxVelocity());
-            } else if (paddleBounds.getBottomEdge() < targetY) {
+            } else if (paddleBounds.getBottom() < targetY) {
                 paddle.setVelocity(paddle.getMaxVelocity());
             }
         }

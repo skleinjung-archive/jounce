@@ -1,6 +1,6 @@
 package com.thrashplay.jounce.entity.ai;
 
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.jounce.entity.Ball;
 import com.thrashplay.jounce.entity.Paddle;
 import com.thrashplay.luna.api.engine.Updateable;
@@ -27,9 +27,9 @@ public class BallChasingPaddleController implements Updateable {
         int maxVelocity = (int) ((paddle.getMaxVelocity() / 4f) * 2);
 
         Rectangle paddleBounds = paddle.getBounds();
-        if (ball.getY() < (paddleBounds.getTopEdge() + paddleBounds.getHeight() / 4)) {
+        if (ball.getY() < (paddleBounds.getTop() + paddleBounds.getHeight() / 4)) {
             velocity = -maxVelocity;
-        } else if (ball.getY() > (paddleBounds.getBottomEdge() - paddleBounds.getHeight() / 4)) {
+        } else if (ball.getY() > (paddleBounds.getBottom() - paddleBounds.getHeight() / 4)) {
             velocity = maxVelocity;
         } else {
             velocity = 0;

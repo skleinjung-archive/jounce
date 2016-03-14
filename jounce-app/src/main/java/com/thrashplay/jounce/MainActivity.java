@@ -7,6 +7,8 @@ import com.thrashplay.luna.android.engine.LunaGame;
 import com.thrashplay.luna.android.graphics.LunaSurfaceView;
 import com.thrashplay.luna.android.input.AndroidTouchManager;
 import com.thrashplay.luna.android.sound.AndroidSoundManager;
+import com.thrashplay.luna.api.engine.Luna;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.input.BackButtonManager;
 import com.thrashplay.luna.engine.LunaGameConfig;
 import com.thrashplay.luna.math.Floats;
@@ -34,7 +36,7 @@ public class MainActivity extends LunaGame implements Jounce {
     }
 
     @Override
-    protected LunaGameConfig getGameConfig() {
+    protected LunaGameConfig getGameConfig(Luna luna) {
         LunaGameConfig config = new LunaGameConfig();
         config.setScreenManager(new JounceScreenManager(this));
         config.setDefaultScreen("title");

@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.sound.SoundEffect;
 import com.thrashplay.luna.api.sound.SoundManager;
 import com.thrashplay.luna.api.engine.Updateable;
@@ -47,7 +47,7 @@ public class VectorBasedBall implements Renderable, Updateable {
 
     public void reset() {
         Rectangle gameBoardDimensions = jounce.getGameBoardDimensions();
-        y = gameBoardDimensions.getTopEdge() + (int) (Math.random() * (gameBoardDimensions.getHeight() - 20)) + 10;
+        y = gameBoardDimensions.getTop() + (int) (Math.random() * (gameBoardDimensions.getHeight() - 20)) + 10;
 
         float desiredSpeedInPixelsPerSecond = (float) gameBoardDimensions.getWidth() / SECONDS_TO_CROSS_BOARD;
         float desiredSpeedInPixelsPerUpdate = desiredSpeedInPixelsPerSecond / 60;
@@ -57,7 +57,7 @@ public class VectorBasedBall implements Renderable, Updateable {
             x = gameBoardDimensions.getCenterX() + (int) (Math.random() * (gameBoardDimensions.getWidth() / 2)) - 10;
             velocityX = -(int) desiredSpeedInPixelsPerUpdate;
         } else if (jounce.getLastPlayerToScore() == null || jounce.getLastPlayerToScore() == Player.Right) {
-            x = gameBoardDimensions.getLeftEdge() + (int) (Math.random() * (gameBoardDimensions.getWidth() / 2)) + 10;
+            x = gameBoardDimensions.getLeft() + (int) (Math.random() * (gameBoardDimensions.getWidth() / 2)) + 10;
             velocityX = (int) desiredSpeedInPixelsPerUpdate;
         }
     }
@@ -108,21 +108,21 @@ public class VectorBasedBall implements Renderable, Updateable {
         y += velocityY;
 
         // bounce off top
-        if ((y - radius) < jounce.getGameBoardDimensions().getTopEdge()) {
+        if ((y - radius) < jounce.getGameBoardDimensions().getTop()) {
             velocityY = -velocityY;
             wallBounceSound.play(0.5f);
         }
         // bounce off bottom
-        if ((y + radius) > jounce.getGameBoardDimensions().getBottomEdge()) {
+        if ((y + radius) > jounce.getGameBoardDimensions().getBottom()) {
             velocityY = -velocityY;
             wallBounceSound.play(0.5f);
         }
 
         // bounce off left paddle
         Rectangle bounds = leftPaddle.getBounds();
-        if ((x - radius) < bounds.getRightEdge()) {
-            int paddleTop = bounds.getTopEdge();
-            int paddleBottom = bounds.getBottomEdge();
+        if ((x - radius) < bounds.getRight()) {
+            int paddleTop = bounds.getTop();
+            int paddleBottom = bounds.getBottom();
 
             if (y >= paddleTop && y <= paddleBottom) {
                 // positive velocity after bouncing off of left paddle
@@ -139,9 +139,9 @@ public class VectorBasedBall implements Renderable, Updateable {
 
         // bounce off right paddle
         bounds = rightPaddle.getBounds();
-        if ((x + radius) > bounds.getLeftEdge()) {
-            int paddleTop = bounds.getTopEdge();
-            int paddleBottom = bounds.getBottomEdge();
+        if ((x + radius) > bounds.getLeft()) {
+            int paddleTop = bounds.getTop();
+            int paddleBottom = bounds.getBottom();
 
             if (y >= paddleTop && y <= paddleBottom) {
                 // negative velocity after bouncing off of right paddle

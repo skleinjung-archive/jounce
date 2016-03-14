@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity.ai;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.jounce.Rectangle;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.jounce.entity.Ball;
 import com.thrashplay.jounce.entity.Paddle;
 import com.thrashplay.luna.math.Random;
@@ -31,14 +31,14 @@ public class ReactionTimeLimitedBallChasingBehavior implements RandomBehaviorPad
 
 
         // calculate a target zone on the paddle
-//        int zoneTop = paddleBounds.getTopEdge() + Random.getInteger(paddleBounds.getHeight());
-//        int zoneBottom = zoneTop + Random.getInteger(paddleBounds.getHeight() - (zoneTop - paddleBounds.getTopEdge()));
+//        int zoneTop = paddleBounds.getTop() + Random.getInteger(paddleBounds.getHeight());
+//        int zoneBottom = zoneTop + Random.getInteger(paddleBounds.getHeight() - (zoneTop - paddleBounds.getTop()));
 
         if (ballIsMovingTowardsPaddle(paddle, ball)) {
             moveTowards(ball.getY(), paddle);
         } else {
             Rectangle gameBoardDimensions = jounce.getGameBoardDimensions();
-            int yPosition = Random.getInteger(gameBoardDimensions.getHeight() / 2) + gameBoardDimensions.getTopEdge() + (gameBoardDimensions.getHeight() / 4);
+            int yPosition = Random.getInteger(gameBoardDimensions.getHeight() / 2) + gameBoardDimensions.getTop() + (gameBoardDimensions.getHeight() / 4);
             moveTowards(yPosition, paddle);
         }
     }
@@ -47,7 +47,7 @@ public class ReactionTimeLimitedBallChasingBehavior implements RandomBehaviorPad
         int maxVelocity = (int) ((paddle.getMaxVelocity() / 4f) * 2);
 
         Rectangle paddleBounds = paddle.getBounds();
-        if (paddleBounds.getBottomEdge() > y) {
+        if (paddleBounds.getBottom() > y) {
             if (currentDirection != -1) {
                 if (System.currentTimeMillis() > nextDirectionChangeTime) {
                     paddle.setVelocity(-maxVelocity);
@@ -59,7 +59,7 @@ public class ReactionTimeLimitedBallChasingBehavior implements RandomBehaviorPad
             } else {
                 paddle.setVelocity(-maxVelocity);
             }
-        } else if (paddleBounds.getTopEdge() < y) {
+        } else if (paddleBounds.getTop() < y) {
             if (currentDirection != 1) {
                 if (System.currentTimeMillis() > nextDirectionChangeTime) {
                     paddle.setVelocity(maxVelocity);
