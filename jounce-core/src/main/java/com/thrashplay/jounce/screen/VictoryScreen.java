@@ -25,7 +25,10 @@ public class VictoryScreen extends EntityManagerScreen implements BackButtonList
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
 //        entityManager.addEntity(new FpsDisplay());
-        entityManager.addEntity(new GameBoard(jounce));
+        GameBoard gameBoard = new GameBoard(jounce);
+        gameBoard.setDrawCenterStripe(false);
+        entityManager.addEntity(gameBoard);
+
 
         // the paddles
         Paddle leftPaddle = new Paddle(jounce, Player.Left);
@@ -35,7 +38,7 @@ public class VictoryScreen extends EntityManagerScreen implements BackButtonList
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
 
         // the score
-        entityManager.addEntity(new Score(jounce, ball));
+        entityManager.addEntity(new ScoreDisplay(jounce, ball));
 
         // the victory text
         entityManager.addEntity(new VictoryText(jounce));

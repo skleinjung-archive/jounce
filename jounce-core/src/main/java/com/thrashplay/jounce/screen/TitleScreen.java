@@ -6,7 +6,10 @@ import com.thrashplay.jounce.entity.ai.BalancedAiPaddleController;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
 import com.thrashplay.luna.api.engine.EntityManagerScreen;
 import com.thrashplay.luna.api.geom.Rectangle;
+import com.thrashplay.luna.api.ui.Button;
+import com.thrashplay.luna.api.ui.ButtonAdapter;
 import com.thrashplay.luna.renderable.ClearScreen;
+import com.thrashplay.luna.ui.TextButton;
 
 /**
  * TODO: Add class documentation
@@ -15,6 +18,7 @@ import com.thrashplay.luna.renderable.ClearScreen;
  */
 public class TitleScreen extends EntityManagerScreen {
     private Jounce jounce;
+    private boolean newGamePressed;
 
     public TitleScreen(Jounce jounce) {
         this.jounce = jounce;
@@ -24,7 +28,9 @@ public class TitleScreen extends EntityManagerScreen {
     public void initialize(Rectangle screenBounds) {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
-        entityManager.addEntity(new GameBoard(jounce));
+        GameBoard gameBoard = new GameBoard(jounce);
+        gameBoard.setDrawCenterStripe(false);
+        entityManager.addEntity(gameBoard);
 
         // the paddles
         Paddle leftPaddle = new Paddle(jounce, Player.Left);
@@ -41,8 +47,18 @@ public class TitleScreen extends EntityManagerScreen {
         entityManager.addEntity(new BalancedAiPaddleController(jounce, rightPaddle, ball));
 
         // the score
-        entityManager.addEntity(new Score(jounce, ball));
+        entityManager.addEntity(new ScoreBehavior(jounce, ball));
         entityManager.addEntity(new TitleText(jounce));
+
+        Button newGameButton = new TextButton(jounce.getMultiTouchManager(), "New Game", screenBounds.getCenterX() - (125 / 2), screenBounds.getBottom() - 160, 125, 50);
+        newGameButton.addButtonListener(new ButtonAdapter() {
+            @Override
+            public void buttonReleased() {
+                newGamePressed = true;
+            }
+        });
+        entityManager.addEntity(newGameButton);
+        newGamePressed = false;
 
         jounce.clearScores();
     }
@@ -54,7 +70,7 @@ public class TitleScreen extends EntityManagerScreen {
 
     @Override
     public String getNextScreen() {
-        if (jounce.getTouchManager().isDown()) {
+        if (newGamePressed) {
             return "game";
         } else {
             return super.getNextScreen();

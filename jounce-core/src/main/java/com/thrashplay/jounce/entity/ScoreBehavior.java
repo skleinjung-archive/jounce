@@ -1,18 +1,17 @@
 package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.luna.api.geom.Rectangle;
-import com.thrashplay.luna.api.sound.SoundEffect;
 import com.thrashplay.luna.api.engine.Updateable;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.graphics.Graphics;
-import com.thrashplay.luna.api.graphics.Renderable;
+import com.thrashplay.luna.api.sound.SoundEffect;
 
 /**
  * TODO: Add class documentation
  *
  * @author Sean Kleinjung
  */
-public class Score implements Renderable, Updateable {
+public class ScoreBehavior implements Updateable {
 
     private Jounce jounce;
     private Ball ball;
@@ -23,7 +22,7 @@ public class Score implements Renderable, Updateable {
     private long freezeDelay = 75;
     private long resetDelay = 400;
 
-    public Score(Jounce jounce, Ball ball) {
+    public ScoreBehavior(Jounce jounce, Ball ball) {
         this.jounce = jounce;
         this.ball = ball;
 
@@ -62,15 +61,5 @@ public class Score implements Renderable, Updateable {
                 outOfBoundsSound.play(1.0f);
             }
         }
-    }
-
-    @Override
-    public void render(Graphics graphics) {
-        Rectangle bounds = jounce.getGameBoardDimensions();
-        int centerX = (int) (bounds.getLeft() + (bounds.getWidth() / 2f));
-        int top = bounds.getTop();
-
-        graphics.drawString(String.valueOf(jounce.getLeftPlayerScore()), centerX - 100, top + 115, 0xffffffff, 72, Graphics.HorizontalAlignment.Right);
-        graphics.drawString(String.valueOf(jounce.getRightPlayerScore()), centerX + 100, top + 115, 0xffffffff, 72, Graphics.HorizontalAlignment.Left);
     }
 }

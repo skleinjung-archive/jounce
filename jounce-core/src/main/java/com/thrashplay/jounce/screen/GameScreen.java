@@ -47,7 +47,8 @@ public class GameScreen extends EntityManagerScreen implements BackButtonListene
         entityManager.addEntity(new BallChasingPaddleController(rightPaddle, ball));
 
         // the score
-        entityManager.addEntity(new Score(jounce, ball));
+        entityManager.addEntity(new ScoreDisplay(jounce, ball));
+        entityManager.addEntity(new ScoreBehavior(jounce, ball));
 
 //        entityManager.addEntity(new DebugString(jounce, ball, leftPaddle));
 

@@ -13,9 +13,18 @@ import com.thrashplay.luna.api.graphics.Renderable;
 public class GameBoard implements Renderable {
 
     private Jounce jounce;
+    private boolean drawCenterStripe = true;
 
     public GameBoard(Jounce jounce) {
         this.jounce = jounce;
+    }
+
+    public boolean isDrawCenterStripe() {
+        return drawCenterStripe;
+    }
+
+    public void setDrawCenterStripe(boolean drawCenterStripe) {
+        this.drawCenterStripe = drawCenterStripe;
     }
 
     @Override
@@ -30,7 +39,8 @@ public class GameBoard implements Renderable {
         graphics.fillRect(gameBoardDimensions.getLeft(), gameBoardDimensions.getBottom() - 5, gameBoardDimensions.getWidth(), 5, 0xffffffff);   // bottom
 
         // center paint line
-        int middleOfBoard = gameBoardDimensions.getLeft() + gameBoardDimensions.getWidth() / 2;
-        graphics.drawLine(middleOfBoard, 0, middleOfBoard, gameBoardDimensions.getHeight(), 0x99ffffff);
+        if (drawCenterStripe) {
+            graphics.drawLine(gameBoardDimensions.getCenterX(), 0, gameBoardDimensions.getCenterX(), gameBoardDimensions.getHeight(), 0x99ffffff);
+        }
     }
 }

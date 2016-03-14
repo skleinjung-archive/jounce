@@ -20,7 +20,7 @@ public class TitleText implements Renderable {
     @Override
     public void render(Graphics graphics) {
         Rectangle gameBoardBounds = jounce.getGameBoardDimensions();
-        graphics.drawString("JOUNCE", gameBoardBounds.getCenterX(), gameBoardBounds.getBottom() - 65, 0xffffffff, 108, Graphics.HorizontalAlignment.Center);
-        graphics.drawString("Touch the screen to play", gameBoardBounds.getCenterX(), gameBoardBounds.getBottom() - 25, 0xffffffff, 24, Graphics.HorizontalAlignment.Center);
+        graphics.drawString("JOUNCE", gameBoardBounds.getCenterX(), 150, 0xffffffff, 108, Graphics.HorizontalAlignment.Center);
+//        graphics.drawString("Touch the screen to play", gameBoardBounds.getCenterX(), 105, 0xffffffff, 24, Graphics.HorizontalAlignment.Center);
     }
 }

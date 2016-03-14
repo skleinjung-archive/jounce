@@ -5,9 +5,11 @@ import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.jounce.entity.Player;
 import com.thrashplay.luna.api.input.BackButtonListener;
 import com.thrashplay.luna.api.input.BackButtonManager;
+import com.thrashplay.luna.api.input.MultiTouchManager;
 import com.thrashplay.luna.api.input.TouchManager;
 import com.thrashplay.luna.api.sound.SoundManager;
 import com.thrashplay.luna.desktop.LunaCanvas;
+import com.thrashplay.luna.desktop.input.DesktopMultiTouchManager;
 import com.thrashplay.luna.desktop.input.MouseTouchManager;
 import com.thrashplay.luna.desktop.sound.DesktopSoundManager;
 import com.thrashplay.luna.math.Floats;
@@ -24,17 +26,24 @@ public class DesktopJounce implements Jounce {
 
     private LunaCanvas canvas;
     private TouchManager touchManager;
+    private MultiTouchManager multiTouchManager;
     private SoundManager soundManager;
 
     public DesktopJounce(LunaCanvas canvas) {
         this.canvas = canvas;
         this.touchManager = new MouseTouchManager(canvas);
+        this.multiTouchManager = new DesktopMultiTouchManager(touchManager);
         this.soundManager = new DesktopSoundManager();
     }
 
     @Override
     public TouchManager getTouchManager() {
         return touchManager;
+    }
+
+    @Override
+    public MultiTouchManager getMultiTouchManager() {
+        return multiTouchManager;
     }
 
     @Override
