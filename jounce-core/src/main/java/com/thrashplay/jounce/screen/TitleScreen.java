@@ -5,6 +5,7 @@ import com.thrashplay.jounce.entity.*;
 import com.thrashplay.jounce.entity.ai.BalancedAiPaddleController;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
 import com.thrashplay.luna.api.engine.EntityManagerScreen;
+import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.renderable.ClearScreen;
 
 /**
@@ -20,7 +21,7 @@ public class TitleScreen extends EntityManagerScreen {
     }
 
     @Override
-    public void initialize() {
+    public void initialize(Rectangle screenBounds) {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
         entityManager.addEntity(new GameBoard(jounce));
