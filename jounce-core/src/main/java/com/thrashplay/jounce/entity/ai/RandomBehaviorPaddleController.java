@@ -4,7 +4,7 @@ import com.thrashplay.jounce.entity.Ball;
 import com.thrashplay.jounce.entity.Paddle;
 import com.thrashplay.luna.api.engine.Updateable;
 import com.thrashplay.luna.api.graphics.Graphics;
-import com.thrashplay.luna.math.Random;
+import com.thrashplay.luna.api.math.Random;
 
 import java.util.LinkedList;
 import java.util.List;

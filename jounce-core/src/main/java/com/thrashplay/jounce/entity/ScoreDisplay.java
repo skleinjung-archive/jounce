@@ -14,7 +14,7 @@ public class ScoreDisplay implements Renderable {
 
     private Jounce jounce;
 
-    public ScoreDisplay(Jounce jounce, Ball ball) {
+    public ScoreDisplay(Jounce jounce) {
         this.jounce = jounce;
     }
 

@@ -18,7 +18,8 @@ public class Main {
             protected LunaGameConfig createGameConfig(LunaCanvas canvas, Luna luna) {
                 LunaGameConfig gameConfig = new LunaGameConfig();
                 gameConfig.setScreenManager(new JounceScreenManager(new DesktopJounce(canvas)));
-                gameConfig.setDefaultScreen("title");
+//                gameConfig.setDefaultScreen("title");
+                gameConfig.setDefaultScreen("menu");
                 return gameConfig;
             }
         };

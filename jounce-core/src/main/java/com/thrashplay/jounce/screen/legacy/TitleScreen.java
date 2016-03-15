@@ -1,4 +1,4 @@
-package com.thrashplay.jounce.screen;
+package com.thrashplay.jounce.screen.legacy;
 
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
@@ -25,7 +25,7 @@ public class TitleScreen extends EntityManagerScreen {
     }
 
     @Override
-    public void initialize(Rectangle screenBounds) {
+    protected void doInitialize(Rectangle screenBounds) {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
         GameBoard gameBoard = new GameBoard(jounce);
@@ -47,7 +47,7 @@ public class TitleScreen extends EntityManagerScreen {
         entityManager.addEntity(new BalancedAiPaddleController(jounce, rightPaddle, ball));
 
         // the score
-        entityManager.addEntity(new ScoreBehavior(jounce, ball));
+//        entityManager.addEntity(new ScoreBehavior(jounce, ball));
         entityManager.addEntity(new TitleText(jounce));
 
         Button newGameButton = new TextButton(jounce.getMultiTouchManager(), "New Game", screenBounds.getCenterX() - (125 / 2), screenBounds.getBottom() - 160, 125, 50);

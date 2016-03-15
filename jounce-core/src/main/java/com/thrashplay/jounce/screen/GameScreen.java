@@ -22,7 +22,8 @@ public class GameScreen extends EntityManagerScreen implements BackButtonListene
         this.jounce = jounce;
     }
 
-    public void initialize(Rectangle screenBounds) {
+    @Override
+    protected void doInitialize(Rectangle screenBounds) {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
 //        entityManager.addEntity(new FpsDisplay());
@@ -40,15 +41,12 @@ public class GameScreen extends EntityManagerScreen implements BackButtonListene
 //        entityManager.addEntity(new BallTrails(ball));
 
         // paddle controllers
-        entityManager.addEntity(new TouchPaddleController(jounce, leftPaddle));
-//        entityManager.addEntity(new PerfectAiPaddleController(rightPaddle, ball));
-//        entityManager.addEntity(new BalancedAiPaddleController(jounce, rightPaddle, ball));
-//        entityManager.addEntity(new BehaviorBasedPaddleController(jounce, rightPaddle, ball));
+//        entityManager.addEntity(new TouchPaddleController(jounce, leftPaddle));
         entityManager.addEntity(new BallChasingPaddleController(rightPaddle, ball));
 
         // the score
-        entityManager.addEntity(new ScoreDisplay(jounce, ball));
-        entityManager.addEntity(new ScoreBehavior(jounce, ball));
+        entityManager.addEntity(new ScoreDisplay(jounce));
+        //entityManager.addEntity(new ScoreBehavior(jounce, ball));
 
 //        entityManager.addEntity(new DebugString(jounce, ball, leftPaddle));
 

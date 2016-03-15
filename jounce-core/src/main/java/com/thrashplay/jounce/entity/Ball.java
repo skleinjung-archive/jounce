@@ -6,8 +6,8 @@ import com.thrashplay.luna.api.sound.SoundEffect;
 import com.thrashplay.luna.api.engine.Updateable;
 import com.thrashplay.luna.api.graphics.Graphics;
 import com.thrashplay.luna.api.graphics.Renderable;
-import com.thrashplay.luna.math.Angles;
-import com.thrashplay.luna.math.Random;
+import com.thrashplay.luna.api.math.Angles;
+import com.thrashplay.luna.api.math.Random;
 
 /**
  * TODO: Add class documentation

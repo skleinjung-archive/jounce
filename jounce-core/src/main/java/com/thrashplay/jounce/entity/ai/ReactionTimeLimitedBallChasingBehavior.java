@@ -4,7 +4,7 @@ import com.thrashplay.jounce.Jounce;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.jounce.entity.Ball;
 import com.thrashplay.jounce.entity.Paddle;
-import com.thrashplay.luna.math.Random;
+import com.thrashplay.luna.api.math.Random;
 
 /**
  * TODO: Add class documentation

@@ -12,7 +12,7 @@ import com.thrashplay.luna.desktop.LunaCanvas;
 import com.thrashplay.luna.desktop.input.DesktopMultiTouchManager;
 import com.thrashplay.luna.desktop.input.MouseTouchManager;
 import com.thrashplay.luna.desktop.sound.DesktopSoundManager;
-import com.thrashplay.luna.math.Floats;
+import com.thrashplay.luna.api.math.Floats;
 
 /**
  * TODO: Add class documentation

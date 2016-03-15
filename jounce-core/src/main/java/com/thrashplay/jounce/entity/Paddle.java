@@ -13,15 +13,6 @@ import com.thrashplay.luna.api.graphics.Renderable;
  */
 public class Paddle implements Updateable, Renderable {
 
-    public enum CollisionZone {
-        ExtremeTop,
-        Top,
-        Middle,
-        Bottom,
-        ExtremeBottom,
-        OutOfBounds
-    }
-
     private Jounce jounce;
 
     private Player player;

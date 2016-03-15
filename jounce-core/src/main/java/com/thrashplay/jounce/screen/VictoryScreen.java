@@ -21,7 +21,8 @@ public class VictoryScreen extends EntityManagerScreen implements BackButtonList
         this.jounce = jounce;
     }
 
-    public void initialize(Rectangle screenBounds) {
+    @Override
+    protected void doInitialize(Rectangle screenBounds) {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
 //        entityManager.addEntity(new FpsDisplay());
@@ -38,7 +39,7 @@ public class VictoryScreen extends EntityManagerScreen implements BackButtonList
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
 
         // the score
-        entityManager.addEntity(new ScoreDisplay(jounce, ball));
+        entityManager.addEntity(new ScoreDisplay(jounce));
 
         // the victory text
         entityManager.addEntity(new VictoryText(jounce));
