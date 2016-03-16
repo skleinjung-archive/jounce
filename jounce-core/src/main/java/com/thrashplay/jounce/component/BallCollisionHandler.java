@@ -25,7 +25,7 @@ public class BallCollisionHandler implements CollisionHandler {
     public void handleCollision(GameObject ourObject, GameObject otherObject, Rectangle ourBoundingBox, Rectangle otherBoundingBox) {
         Position ballPosition = ourObject.getComponent(Position.class);
         Movement ballMovement = ourObject.getComponent(Movement.class);
-        CollisionConfig otherCollisionConfig = otherObject.getComponent(CollisionConfig.class);
+        Collider otherCollisionConfig = otherObject.getComponent(Collider.class);
 
         switch (otherCollisionConfig.getCategory()) {
             case CollisionCategory.TOP_WALL:

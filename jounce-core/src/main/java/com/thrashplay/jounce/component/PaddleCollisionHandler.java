@@ -15,7 +15,7 @@ public class PaddleCollisionHandler implements CollisionHandler {
         Position paddlePosition = ourObject.getComponent(Position.class);
         Movement paddleMovement = ourObject.getComponent(Movement.class);
 
-        CollisionConfig otherCollisionConfig = otherObject.getComponent(CollisionConfig.class);
+        Collider otherCollisionConfig = otherObject.getComponent(Collider.class);
         switch (otherCollisionConfig.getCategory()) {
             case CollisionCategory.TOP_WALL:
                 paddlePosition.setY(otherBoundingBox.getY() + otherBoundingBox.getHeight());
