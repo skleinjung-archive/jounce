@@ -23,7 +23,7 @@ public class GameScreen extends EntityManagerScreen implements BackButtonListene
     }
 
     @Override
-    protected void doInitialize(Rectangle screenBounds) {
+    protected void doInitialize() {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
 //        entityManager.addEntity(new FpsDisplay());
