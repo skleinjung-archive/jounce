@@ -58,7 +58,7 @@ public class GameObjectFactory {
 
         ball.addComponent(position);
         ball.addComponent(new Movement((float) (speed * Math.cos(angleInRadians)), -(float) (speed * Math.sin(angleInRadians))));
-        ball.addComponent(new Collider(CollisionCategory.BALL, new Rectangle(0, 0, diameter, diameter)));
+        ball.addComponent(new Collider(CollisionCategory.BALL, true, new Rectangle(0, 0, diameter, diameter)));
         ball.addComponent(new CircleRenderer(0xffff0000, true));
         ball.addComponent(CollisionHandler.class, new BallCollisionHandler(soundManager.createSoundEffect("sfx/paddle_hit.mp3"), soundManager.createSoundEffect("sfx/wall_hit.mp3")));
         ball.addComponent(new ScoreBehavior(jounce, entityManager));
@@ -72,7 +72,7 @@ public class GameObjectFactory {
         GameObject topWall = new GameObject("topWall");
         topWall.addComponent(new Position(gameBounds.getLeft(), gameBounds.getTop(), gameBounds.getWidth(), 5));
         topWall.addComponent(new RectangleRenderer(0xffffffff, true));
-        topWall.addComponent(new Collider(CollisionCategory.TOP_WALL, new Rectangle(0, 0, gameBounds.getWidth(), 5)));
+        topWall.addComponent(new Collider(CollisionCategory.TOP_WALL, false, new Rectangle(0, 0, gameBounds.getWidth(), 5)));
         return topWall;
     }
 
@@ -82,7 +82,7 @@ public class GameObjectFactory {
         GameObject bottomWall = new GameObject("bottomWall");
         bottomWall.addComponent(new Position(gameBounds.getLeft(), gameBounds.getBottom() - 5, gameBounds.getWidth(), 5));
         bottomWall.addComponent(new RectangleRenderer(0xffffffff, true));
-        bottomWall.addComponent(new Collider(CollisionCategory.BOTTOM_WALL, new Rectangle(0, 0, gameBounds.getWidth(), 5)));
+        bottomWall.addComponent(new Collider(CollisionCategory.BOTTOM_WALL, false, new Rectangle(0, 0, gameBounds.getWidth(), 5)));
         return bottomWall;
     }
 
@@ -104,7 +104,7 @@ public class GameObjectFactory {
         movement.setMaximumVelocityY(25 * jounce.getWidthScalar());
         paddle.addComponent(movement);
         paddle.addComponent(new RectangleRenderer(0xffffffff, true));
-        paddle.addComponent(new Collider(collisionCategory, new Rectangle(0, 0, 15, paddleHeight)));
+        paddle.addComponent(new Collider(collisionCategory, true, new Rectangle(0, 0, 15, paddleHeight)));
         paddle.addComponent(CollisionHandler.class, new PaddleCollisionHandler());
         paddle.addComponent(controller);
         return paddle;
