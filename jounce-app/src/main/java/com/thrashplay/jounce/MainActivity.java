@@ -30,6 +30,16 @@ public class MainActivity extends LunaGame implements Jounce {
     }
 
     @Override
+    protected int getSceneWidth() {
+        return 480;
+    }
+
+    @Override
+    protected int getSceneHeight() {
+        return 320;
+    }
+
+    @Override
     public BackButtonManager getBackButtonManager() {
         return this;
     }
