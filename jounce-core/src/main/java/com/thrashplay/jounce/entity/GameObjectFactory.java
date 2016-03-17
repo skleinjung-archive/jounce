@@ -39,7 +39,7 @@ public class GameObjectFactory {
         Position position = new Position(0, 0, diameter, diameter);
         position.setY(Random.getInteger(gameBoardDimensions.getTop() + 15, gameBoardDimensions.getBottom() - 15));
 
-        float speed = 14 * jounce.getWidthScalar();
+        float speed = 20 * jounce.getWidthScalar();
         float angle;
         if (jounce.getLastPlayerToScore() == Player.Left) {
             // serve from the right
