@@ -101,7 +101,7 @@ public class Ball implements Renderable, Updateable {
     }
 
     @Override
-    public void update(Graphics graphics) {
+    public void update(long delta) {
         double angleInRadians = Angles.toRadians(angle);
         float velocityX = (float) (speed * Math.cos(angleInRadians));
         float velocityY = -(float) (speed * Math.sin(angleInRadians)); // negate it because decreasing Y coordinates move up the screen

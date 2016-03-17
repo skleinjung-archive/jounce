@@ -3,7 +3,6 @@ package com.thrashplay.jounce.entity;
 import com.thrashplay.luna.api.component.GameObject;
 import com.thrashplay.luna.api.engine.EntityManager;
 import com.thrashplay.luna.api.engine.Updateable;
-import com.thrashplay.luna.api.graphics.Graphics;
 
 /**
  * TODO: Add class documentation
@@ -36,7 +35,7 @@ public class BallSpawner implements Updateable {
     }
 
     @Override
-    public void update(Graphics graphics) {
+    public void update(long delta) {
         if (shouldSpawnBall()) {
             entityManager.addEntity(gameObjectFactory.createBall());
             respawnTime = -1;

@@ -33,7 +33,7 @@ public class Paddle implements Updateable, Renderable {
     }
 
     @Override
-    public void update(Graphics graphics) {
+    public void update(long delta) {
         setVelocity(getVelocity() + getAcceleration());
         y += velocity;
         

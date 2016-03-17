@@ -4,7 +4,6 @@ import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.jounce.entity.Ball;
 import com.thrashplay.jounce.entity.Paddle;
 import com.thrashplay.luna.api.engine.Updateable;
-import com.thrashplay.luna.api.graphics.Graphics;
 
 /**
  * TODO: Add class documentation
@@ -23,7 +22,7 @@ public class BallChasingPaddleController implements Updateable {
     }
 
     @Override
-    public void update(Graphics graphics) {
+    public void update(long delta) {
         int maxVelocity = (int) ((paddle.getMaxVelocity() / 4f) * 2);
 
         Rectangle paddleBounds = paddle.getBounds();

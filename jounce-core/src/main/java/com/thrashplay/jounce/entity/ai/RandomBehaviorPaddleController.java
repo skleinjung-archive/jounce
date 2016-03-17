@@ -3,7 +3,6 @@ package com.thrashplay.jounce.entity.ai;
 import com.thrashplay.jounce.entity.Ball;
 import com.thrashplay.jounce.entity.Paddle;
 import com.thrashplay.luna.api.engine.Updateable;
-import com.thrashplay.luna.api.graphics.Graphics;
 import com.thrashplay.luna.api.math.Random;
 
 import java.util.LinkedList;
@@ -38,7 +37,7 @@ public class RandomBehaviorPaddleController implements Updateable {
     }
 
     @Override
-    public void update(Graphics graphics) {
+    public void update(long delta) {
         if (System.currentTimeMillis() > behaviorEndTime) {
             changeBehavior();
         }

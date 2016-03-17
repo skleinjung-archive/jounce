@@ -1,6 +1,7 @@
 package com.thrashplay.jounce.screen;
 
 import com.thrashplay.jounce.Jounce;
+import com.thrashplay.jounce.component.CenterStripeRenderer;
 import com.thrashplay.jounce.component.RectangleRenderer;
 import com.thrashplay.jounce.component.TouchPaddleController;
 import com.thrashplay.jounce.component.ai.DelayedBallChasingPaddleController;
@@ -49,7 +50,7 @@ public class MatchScreen extends EntityManagerScreen {
         GameObject background = new GameObject("background");
         background.addComponent(new Position(gameBounds.getLeft(), gameBounds.getTop(), gameBounds.getWidth(), gameBounds.getHeight()));
         background.addComponent(new RectangleRenderer(0xff000000, true));
-//        background.addComponent(new CenterStripeRenderer(0x99ffffff));
+        background.addComponent(new CenterStripeRenderer(0x99ffffff));
         entityManager.addEntity(background);
 
         // components for the simulated match
