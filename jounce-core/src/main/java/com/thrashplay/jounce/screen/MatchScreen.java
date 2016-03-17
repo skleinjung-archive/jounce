@@ -38,7 +38,7 @@ public class MatchScreen extends EntityManagerScreen {
     }
 
     @Override
-    protected void doInitialize(Rectangle screenBounds) {
+    protected void doInitialize() {
         GameObjectFactory gameObjectFactory = new GameObjectFactory(jounce, entityManager);
 
         // the screen and background

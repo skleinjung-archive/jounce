@@ -25,7 +25,9 @@ public class TitleScreen extends EntityManagerScreen {
     }
 
     @Override
-    protected void doInitialize(Rectangle screenBounds) {
+    protected void doInitialize() {
+        Rectangle screenBounds = new Rectangle(0, 0, 480, 320);
+
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
         GameBoard gameBoard = new GameBoard(jounce);

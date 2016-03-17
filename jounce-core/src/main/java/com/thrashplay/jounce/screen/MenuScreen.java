@@ -30,7 +30,9 @@ public class MenuScreen extends EntityManagerScreen {
     }
 
     @Override
-    protected void doInitialize(Rectangle screenBounds) {
+    protected void doInitialize() {
+        Rectangle screenBounds = new Rectangle(0, 0, 480, 320);
+
         GameObjectFactory gameObjectFactory = new GameObjectFactory(jounce, entityManager);
 
         // the screen and background

@@ -3,7 +3,6 @@ package com.thrashplay.jounce.screen;
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
 import com.thrashplay.luna.api.engine.EntityManagerScreen;
-import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.input.BackButtonListener;
 import com.thrashplay.luna.renderable.ClearScreen;
 
@@ -22,7 +21,7 @@ public class VictoryScreen extends EntityManagerScreen implements BackButtonList
     }
 
     @Override
-    protected void doInitialize(Rectangle screenBounds) {
+    protected void doInitialize() {
         // the screen and background
         entityManager.addEntity(new ClearScreen(0x333333));
 //        entityManager.addEntity(new FpsDisplay());

@@ -13,10 +13,11 @@ import com.thrashplay.luna.engine.LunaGameConfig;
  */
 public class Main {
     public static void main(String[] args) {
-        new LunaWindow("Jounce", 760, 480) {
+        new LunaWindow("Jounce", 480, 320, 760, 480) {
             @Override
             protected LunaGameConfig createGameConfig(LunaCanvas canvas, Luna luna) {
                 LunaGameConfig gameConfig = new LunaGameConfig();
+                gameConfig.setSceneDimensions(480, 320);
                 gameConfig.setScreenManager(new JounceScreenManager(new DesktopJounce(canvas)));
 //                gameConfig.setDefaultScreen("title");
                 gameConfig.setDefaultScreen("menu");
