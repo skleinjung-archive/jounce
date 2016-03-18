@@ -1,9 +1,9 @@
 package com.thrashplay.jounce.component;
 
-import com.thrashplay.luna.api.component.GameObject;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.component.Position;
 import com.thrashplay.luna.api.component.UpdateableComponent;
-import com.thrashplay.luna.api.engine.EntityManager;
+import com.thrashplay.luna.api.engine.GameObjectManager;
 
 /**
  * TODO: Add class documentation
@@ -11,10 +11,10 @@ import com.thrashplay.luna.api.engine.EntityManager;
  * @author Sean Kleinjung
  */
 public class BallFadeOutAnimator implements UpdateableComponent {
-    private EntityManager entityManager;
+    private GameObjectManager gameObjectManager;
 
-    public BallFadeOutAnimator(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public BallFadeOutAnimator(GameObjectManager gameObjectManager) {
+        this.gameObjectManager = gameObjectManager;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class BallFadeOutAnimator implements UpdateableComponent {
         position.setHeight((int) (position.getHeight() * 0.83));
 
         if (position.getWidth() < 3) {
-            entityManager.removeEntity(gameObject);
+            gameObjectManager.removeEntity(gameObject);
         }
     }
 }

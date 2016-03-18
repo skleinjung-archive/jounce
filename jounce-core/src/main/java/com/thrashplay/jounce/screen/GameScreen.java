@@ -3,8 +3,7 @@ package com.thrashplay.jounce.screen;
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
-import com.thrashplay.luna.api.engine.EntityManagerScreen;
-import com.thrashplay.luna.api.geom.Rectangle;
+import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.input.BackButtonListener;
 import com.thrashplay.luna.renderable.ClearScreen;
 
@@ -13,7 +12,7 @@ import com.thrashplay.luna.renderable.ClearScreen;
  *
  * @author Sean Kleinjung
  */
-public class GameScreen extends EntityManagerScreen implements BackButtonListener {
+public class GameScreen extends DefaultScreen implements BackButtonListener {
 
     private Jounce jounce;
     private boolean backButtonPressed = false;
@@ -25,27 +24,27 @@ public class GameScreen extends EntityManagerScreen implements BackButtonListene
     @Override
     protected void doInitialize() {
         // the screen and background
-        entityManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.addEntity(new ClearScreen(0x333333));
 //        entityManager.addEntity(new FpsDisplay());
-        entityManager.addEntity(new GameBoard(jounce));
+        gameObjectManager.addEntity(new GameBoard(jounce));
 
         // the paddles
         Paddle leftPaddle = new Paddle(jounce, Player.Left);
-        entityManager.addEntity(leftPaddle);
+        gameObjectManager.addEntity(leftPaddle);
         Paddle rightPaddle = new Paddle(jounce, Player.Right);
-        entityManager.addEntity(rightPaddle);
+        gameObjectManager.addEntity(rightPaddle);
 
         // the ball
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
-        entityManager.addEntity(ball);
+        gameObjectManager.addEntity(ball);
 //        entityManager.addEntity(new BallTrails(ball));
 
         // paddle controllers
 //        entityManager.addEntity(new TouchPaddleController(jounce, leftPaddle));
-        entityManager.addEntity(new BallChasingPaddleController(rightPaddle, ball));
+        gameObjectManager.addEntity(new BallChasingPaddleController(rightPaddle, ball));
 
         // the score
-        entityManager.addEntity(new ScoreDisplay(jounce));
+        gameObjectManager.addEntity(new ScoreDisplay(jounce));
         //entityManager.addEntity(new ScoreBehavior(jounce, ball));
 
 //        entityManager.addEntity(new DebugString(jounce, ball, leftPaddle));
@@ -59,7 +58,7 @@ public class GameScreen extends EntityManagerScreen implements BackButtonListene
     @Override
     public void shutdown() {
         jounce.getBackButtonManager().removeBackButtonListener(this);
-        entityManager.removeAll();
+        gameObjectManager.unregisterAll();
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.thrashplay.jounce.component;
 
 import com.thrashplay.jounce.entity.CollisionCategory;
 import com.thrashplay.luna.api.component.*;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.math.Angles;
 import com.thrashplay.luna.api.sound.SoundEffect;

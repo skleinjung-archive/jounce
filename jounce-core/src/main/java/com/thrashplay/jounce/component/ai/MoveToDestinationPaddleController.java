@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.component.ai;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.luna.api.component.GameObject;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.component.Movement;
 import com.thrashplay.luna.api.component.Position;
 import com.thrashplay.luna.api.component.UpdateableComponent;

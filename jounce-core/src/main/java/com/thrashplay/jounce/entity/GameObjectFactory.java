@@ -3,7 +3,8 @@ package com.thrashplay.jounce.entity;
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.component.*;
 import com.thrashplay.luna.api.component.*;
-import com.thrashplay.luna.api.engine.EntityManager;
+import com.thrashplay.luna.api.engine.GameObject;
+import com.thrashplay.luna.api.engine.GameObjectManager;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.math.Angles;
 import com.thrashplay.luna.api.math.Random;
@@ -22,11 +23,11 @@ public class GameObjectFactory {
     public static final String ID_RIGHT_PADDLE = "rightPaddle";
 
     private Jounce jounce;
-    private EntityManager entityManager;
+    private GameObjectManager gameObjectManager;
 
-    public GameObjectFactory(Jounce jounce, EntityManager entityManager) {
+    public GameObjectFactory(Jounce jounce, GameObjectManager gameObjectManager) {
         this.jounce = jounce;
-        this.entityManager = entityManager;
+        this.gameObjectManager = gameObjectManager;
     }
 
     public GameObject createBall() {
@@ -61,7 +62,7 @@ public class GameObjectFactory {
         ball.addComponent(new Collider(CollisionCategory.BALL, true, new Rectangle(0, 0, diameter, diameter)));
         ball.addComponent(new CircleRenderer(0xffff0000, true));
         ball.addComponent(CollisionHandler.class, new BallCollisionHandler(soundManager.createSoundEffect("sfx/paddle_hit.mp3"), soundManager.createSoundEffect("sfx/wall_hit.mp3")));
-        ball.addComponent(new ScoreBehavior(jounce, entityManager));
+        ball.addComponent(new ScoreBehavior(jounce, gameObjectManager));
 
         return ball;
     }

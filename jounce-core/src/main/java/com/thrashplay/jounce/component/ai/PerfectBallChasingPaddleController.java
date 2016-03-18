@@ -2,9 +2,9 @@ package com.thrashplay.jounce.component.ai;
 
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.GameObjectFactory;
-import com.thrashplay.luna.api.component.GameObject;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.component.Position;
-import com.thrashplay.luna.api.engine.EntityManager;
+import com.thrashplay.luna.api.engine.GameObjectManager;
 
 /**
  * TODO: Add class documentation
@@ -14,12 +14,12 @@ import com.thrashplay.luna.api.engine.EntityManager;
 public class PerfectBallChasingPaddleController extends MoveToDestinationPaddleController {
 
     private Jounce jounce;
-    private EntityManager entityManager;
+    private GameObjectManager gameObjectManager;
 
-    public PerfectBallChasingPaddleController(Jounce jounce, EntityManager entityManager) {
+    public PerfectBallChasingPaddleController(Jounce jounce, GameObjectManager gameObjectManager) {
         super(jounce);
         this.jounce = jounce;
-        this.entityManager = entityManager;
+        this.gameObjectManager = gameObjectManager;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class PerfectBallChasingPaddleController extends MoveToDestinationPaddleC
     }
 
     public Position getBallPosition() {
-        for (Object entity : entityManager.getEntities()) {
+        for (Object entity : gameObjectManager.getEntities()) {
             if (entity instanceof GameObject) {
                 GameObject gameObject = (GameObject) entity;
                 if (GameObjectFactory.ID_BALL.equals(gameObject.getId())) {

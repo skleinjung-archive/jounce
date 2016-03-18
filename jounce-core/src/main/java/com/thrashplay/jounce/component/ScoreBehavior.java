@@ -1,10 +1,10 @@
 package com.thrashplay.jounce.component;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.luna.api.component.GameObject;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.component.Position;
 import com.thrashplay.luna.api.component.UpdateableComponent;
-import com.thrashplay.luna.api.engine.EntityManager;
+import com.thrashplay.luna.api.engine.GameObjectManager;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.sound.SoundEffect;
 
@@ -16,12 +16,12 @@ import com.thrashplay.luna.api.sound.SoundEffect;
 public class ScoreBehavior implements UpdateableComponent {
 
     private Jounce jounce;
-    private EntityManager entityManager;
+    private GameObjectManager gameObjectManager;
     private SoundEffect outOfBoundsSound;
 
-    public ScoreBehavior(Jounce jounce, EntityManager entityManager) {
+    public ScoreBehavior(Jounce jounce, GameObjectManager gameObjectManager) {
         this.jounce = jounce;
-        this.entityManager = entityManager;
+        this.gameObjectManager = gameObjectManager;
         outOfBoundsSound = jounce.getSoundManager().createSoundEffect("sfx/out_of_bounds.mp3");
     }
 
@@ -33,13 +33,13 @@ public class ScoreBehavior implements UpdateableComponent {
             Position position = gameObject.getComponent(Position.class);
             if (position.getX() < gameBoardDimensions.getLeft()) {
                 jounce.addPointForRightPlayer();
-                gameObject.addComponent(new BallFadeOutAnimator(entityManager));
+                gameObject.addComponent(new BallFadeOutAnimator(gameObjectManager));
                 outOfBoundsSound.play(1.0f);
             }
 
             if (position.getX() > gameBoardDimensions.getRight()) {
                 jounce.addPointForLeftPlayer();
-                gameObject.addComponent(new BallFadeOutAnimator(entityManager));
+                gameObject.addComponent(new BallFadeOutAnimator(gameObjectManager));
                 outOfBoundsSound.play(1.0f);
             }
         }

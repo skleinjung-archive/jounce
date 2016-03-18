@@ -8,9 +8,9 @@ import com.thrashplay.jounce.component.ai.DelayedBallChasingPaddleController;
 import com.thrashplay.jounce.entity.BallSpawner;
 import com.thrashplay.jounce.entity.GameObjectFactory;
 import com.thrashplay.jounce.entity.ScoreDisplay;
-import com.thrashplay.luna.api.component.GameObject;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.component.Position;
-import com.thrashplay.luna.api.engine.EntityManagerScreen;
+import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.input.BackButtonListener;
 import com.thrashplay.luna.api.physics.CollisionDetector;
@@ -21,7 +21,7 @@ import com.thrashplay.luna.renderable.ClearScreen;
  *
  * @author Sean Kleinjung
  */
-public class MatchScreen extends EntityManagerScreen {
+public class MatchScreen extends DefaultScreen {
     private Jounce jounce;
     private boolean backButtonPressed = false;
 
@@ -39,10 +39,10 @@ public class MatchScreen extends EntityManagerScreen {
 
     @Override
     protected void doInitialize() {
-        GameObjectFactory gameObjectFactory = new GameObjectFactory(jounce, entityManager);
+        GameObjectFactory gameObjectFactory = new GameObjectFactory(jounce, gameObjectManager);
 
         // the screen and background
-        entityManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.addEntity(new ClearScreen(0x333333));
 
         Rectangle gameBounds = jounce.getGameBoardDimensions();
 
@@ -51,19 +51,19 @@ public class MatchScreen extends EntityManagerScreen {
         background.addComponent(new Position(gameBounds.getLeft(), gameBounds.getTop(), gameBounds.getWidth(), gameBounds.getHeight()));
         background.addComponent(new RectangleRenderer(0xff000000, true));
         background.addComponent(new CenterStripeRenderer(0x99ffffff));
-        entityManager.addEntity(background);
+        gameObjectManager.addEntity(background);
 
         // components for the simulated match
-        entityManager.addEntity(gameObjectFactory.createTopWall());
-        entityManager.addEntity(gameObjectFactory.createBottomWall());
-        entityManager.addEntity(gameObjectFactory.createLeftPaddle(new TouchPaddleController(jounce.getTouchManager())));
-        entityManager.addEntity(gameObjectFactory.createRightPaddle(new DelayedBallChasingPaddleController(jounce, entityManager)));
+        gameObjectManager.addEntity(gameObjectFactory.createTopWall());
+        gameObjectManager.addEntity(gameObjectFactory.createBottomWall());
+        gameObjectManager.addEntity(gameObjectFactory.createLeftPaddle(new TouchPaddleController(jounce.getTouchManager())));
+        gameObjectManager.addEntity(gameObjectFactory.createRightPaddle(new DelayedBallChasingPaddleController(jounce, gameObjectManager)));
 
-        entityManager.addEntity(new BallSpawner(entityManager, gameObjectFactory, 2000));
-        entityManager.addEntity(new CollisionDetector(entityManager));
+        gameObjectManager.addEntity(new BallSpawner(gameObjectManager, gameObjectFactory, 2000));
+        gameObjectManager.addEntity(new CollisionDetector(gameObjectManager));
 
         // title and new game button
-        entityManager.addEntity(new ScoreDisplay(jounce));
+        gameObjectManager.addEntity(new ScoreDisplay(jounce));
 
         jounce.getBackButtonManager().addBackButtonListener(backButtonListener);
 
@@ -73,7 +73,7 @@ public class MatchScreen extends EntityManagerScreen {
 
     @Override
     public void shutdown() {
-        entityManager.removeAll();
+        gameObjectManager.unregisterAll();
         jounce.getBackButtonManager().removeBackButtonListener(backButtonListener);
     }
 

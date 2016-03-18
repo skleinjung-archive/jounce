@@ -2,7 +2,7 @@ package com.thrashplay.jounce.screen;
 
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
-import com.thrashplay.luna.api.engine.EntityManagerScreen;
+import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.input.BackButtonListener;
 import com.thrashplay.luna.renderable.ClearScreen;
 
@@ -11,7 +11,7 @@ import com.thrashplay.luna.renderable.ClearScreen;
  *
  * @author Sean Kleinjung
  */
-public class VictoryScreen extends EntityManagerScreen implements BackButtonListener {
+public class VictoryScreen extends DefaultScreen implements BackButtonListener {
 
     private Jounce jounce;
     private boolean backButtonPressed;
@@ -23,11 +23,11 @@ public class VictoryScreen extends EntityManagerScreen implements BackButtonList
     @Override
     protected void doInitialize() {
         // the screen and background
-        entityManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.addEntity(new ClearScreen(0x333333));
 //        entityManager.addEntity(new FpsDisplay());
         GameBoard gameBoard = new GameBoard(jounce);
         gameBoard.setDrawCenterStripe(false);
-        entityManager.addEntity(gameBoard);
+        gameObjectManager.addEntity(gameBoard);
 
 
         // the paddles
@@ -38,10 +38,10 @@ public class VictoryScreen extends EntityManagerScreen implements BackButtonList
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
 
         // the score
-        entityManager.addEntity(new ScoreDisplay(jounce));
+        gameObjectManager.addEntity(new ScoreDisplay(jounce));
 
         // the victory text
-        entityManager.addEntity(new VictoryText(jounce));
+        gameObjectManager.addEntity(new VictoryText(jounce));
 
         backButtonPressed = false;
         jounce.getBackButtonManager().addBackButtonListener(this);
@@ -50,7 +50,7 @@ public class VictoryScreen extends EntityManagerScreen implements BackButtonList
     @Override
     public void shutdown() {
         jounce.getBackButtonManager().removeBackButtonListener(this);
-        entityManager.removeAll();
+        gameObjectManager.unregisterAll();
     }
 
     @Override

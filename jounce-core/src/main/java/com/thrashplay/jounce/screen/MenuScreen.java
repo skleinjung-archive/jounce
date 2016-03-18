@@ -6,9 +6,9 @@ import com.thrashplay.jounce.component.ai.DelayedBallChasingPaddleController;
 import com.thrashplay.jounce.entity.BallSpawner;
 import com.thrashplay.jounce.entity.GameObjectFactory;
 import com.thrashplay.jounce.entity.TitleText;
-import com.thrashplay.luna.api.component.GameObject;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.component.Position;
-import com.thrashplay.luna.api.engine.EntityManagerScreen;
+import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.physics.CollisionDetector;
 import com.thrashplay.luna.api.ui.Button;
@@ -21,7 +21,7 @@ import com.thrashplay.luna.ui.TextButton;
  *
  * @author Sean Kleinjung
  */
-public class MenuScreen extends EntityManagerScreen {
+public class MenuScreen extends DefaultScreen {
     private Jounce jounce;
     private boolean newGamePressed;
 
@@ -33,10 +33,10 @@ public class MenuScreen extends EntityManagerScreen {
     protected void doInitialize() {
         Rectangle screenBounds = new Rectangle(0, 0, 480, 320);
 
-        GameObjectFactory gameObjectFactory = new GameObjectFactory(jounce, entityManager);
+        GameObjectFactory gameObjectFactory = new GameObjectFactory(jounce, gameObjectManager);
 
         // the screen and background
-        entityManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.addEntity(new ClearScreen(0x333333));
 
         Rectangle gameBounds = jounce.getGameBoardDimensions();
 
@@ -44,19 +44,19 @@ public class MenuScreen extends EntityManagerScreen {
         GameObject background = new GameObject("background");
         background.addComponent(new Position(gameBounds.getLeft(), gameBounds.getTop(), gameBounds.getWidth(), gameBounds.getHeight()));
         background.addComponent(new RectangleRenderer(0xff000000, true));
-        entityManager.addEntity(background);
+        gameObjectManager.addEntity(background);
 
         // components for the simulated match
-        entityManager.addEntity(gameObjectFactory.createTopWall());
-        entityManager.addEntity(gameObjectFactory.createBottomWall());
-        entityManager.addEntity(gameObjectFactory.createLeftPaddle(new DelayedBallChasingPaddleController(jounce, entityManager)));
-        entityManager.addEntity(gameObjectFactory.createRightPaddle(new DelayedBallChasingPaddleController(jounce, entityManager)));
+        gameObjectManager.addEntity(gameObjectFactory.createTopWall());
+        gameObjectManager.addEntity(gameObjectFactory.createBottomWall());
+        gameObjectManager.addEntity(gameObjectFactory.createLeftPaddle(new DelayedBallChasingPaddleController(jounce, gameObjectManager)));
+        gameObjectManager.addEntity(gameObjectFactory.createRightPaddle(new DelayedBallChasingPaddleController(jounce, gameObjectManager)));
 
-        entityManager.addEntity(new BallSpawner(entityManager, gameObjectFactory, 2000));
-        entityManager.addEntity(new CollisionDetector(entityManager));
+        gameObjectManager.addEntity(new BallSpawner(gameObjectManager, gameObjectFactory, 2000));
+        gameObjectManager.addEntity(new CollisionDetector(gameObjectManager));
 
         // title and new game button
-        entityManager.addEntity(new TitleText(jounce));
+        gameObjectManager.addEntity(new TitleText(jounce));
 
         Button newGameButton = new TextButton(jounce.getMultiTouchManager(), "New Game", screenBounds.getCenterX() - (125 / 2), screenBounds.getBottom() - 160, 125, 50);
         newGameButton.addButtonListener(new ButtonAdapter() {
@@ -65,7 +65,7 @@ public class MenuScreen extends EntityManagerScreen {
                 newGamePressed = true;
             }
         });
-        entityManager.addEntity(newGameButton);
+        gameObjectManager.addEntity(newGameButton);
         newGamePressed = false;
 
         jounce.clearScores();
@@ -73,7 +73,7 @@ public class MenuScreen extends EntityManagerScreen {
 
     @Override
     public void shutdown() {
-        entityManager.removeAll();
+        gameObjectManager.unregisterAll();
     }
 
     @Override

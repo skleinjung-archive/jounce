@@ -1,9 +1,9 @@
 package com.thrashplay.jounce.component.ai;
 
 import com.thrashplay.jounce.Jounce;
-import com.thrashplay.luna.api.component.GameObject;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.component.Position;
-import com.thrashplay.luna.api.engine.EntityManager;
+import com.thrashplay.luna.api.engine.GameObjectManager;
 
 /**
  * TODO: Add class documentation
@@ -13,14 +13,14 @@ import com.thrashplay.luna.api.engine.EntityManager;
 public class DelayedBallChasingPaddleController extends MissingBallChasingController {
 
     private Jounce jounce;
-    private EntityManager entityManager;
+    private GameObjectManager gameObjectManager;
 
     private long delayEndTime = -1;
 
-    public DelayedBallChasingPaddleController(Jounce jounce, EntityManager entityManager) {
-        super(jounce, entityManager);
+    public DelayedBallChasingPaddleController(Jounce jounce, GameObjectManager gameObjectManager) {
+        super(jounce, gameObjectManager);
         this.jounce = jounce;
-        this.entityManager = entityManager;
+        this.gameObjectManager = gameObjectManager;
     }
 
     @Override

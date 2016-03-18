@@ -1,6 +1,6 @@
 package com.thrashplay.jounce.component;
 
-import com.thrashplay.luna.api.component.GameObject;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.component.Position;
 import com.thrashplay.luna.api.component.RenderableComponent;
 import com.thrashplay.luna.api.graphics.Graphics;

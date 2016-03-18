@@ -1,7 +1,7 @@
 package com.thrashplay.jounce.entity;
 
-import com.thrashplay.luna.api.component.GameObject;
-import com.thrashplay.luna.api.engine.EntityManager;
+import com.thrashplay.luna.api.engine.GameObject;
+import com.thrashplay.luna.api.engine.GameObjectManager;
 import com.thrashplay.luna.api.engine.Updateable;
 
 /**
@@ -10,18 +10,18 @@ import com.thrashplay.luna.api.engine.Updateable;
  * @author Sean Kleinjung
  */
 public class BallSpawner implements Updateable {
-    private EntityManager entityManager;
+    private GameObjectManager gameObjectManager;
     private GameObjectFactory gameObjectFactory;
     private long respawnDelay;
 
     private long respawnTime = -1;
 
-    public BallSpawner(EntityManager entityManager, GameObjectFactory gameObjectFactory) {
-        this(entityManager, gameObjectFactory, 1000);
+    public BallSpawner(GameObjectManager gameObjectManager, GameObjectFactory gameObjectFactory) {
+        this(gameObjectManager, gameObjectFactory, 1000);
     }
 
-    public BallSpawner(EntityManager entityManager, GameObjectFactory gameObjectFactory, long respawnDelay) {
-        this.entityManager = entityManager;
+    public BallSpawner(GameObjectManager gameObjectManager, GameObjectFactory gameObjectFactory, long respawnDelay) {
+        this.gameObjectManager = gameObjectManager;
         this.gameObjectFactory = gameObjectFactory;
         this.respawnDelay = respawnDelay;
     }
@@ -37,7 +37,7 @@ public class BallSpawner implements Updateable {
     @Override
     public void update(long delta) {
         if (shouldSpawnBall()) {
-            entityManager.addEntity(gameObjectFactory.createBall());
+            gameObjectManager.addEntity(gameObjectFactory.createBall());
             respawnTime = -1;
         } else if (respawnTime == -1 && !ballExists()) {
             respawnTime = System.currentTimeMillis() + respawnDelay;
@@ -45,7 +45,7 @@ public class BallSpawner implements Updateable {
     }
 
     private boolean ballExists() {
-        for (Object entity : entityManager.getEntities()) {
+        for (Object entity : gameObjectManager.getEntities()) {
             if (entity instanceof GameObject) {
                 if (GameObjectFactory.ID_BALL.equals(((GameObject) entity).getId())) {
                     return true;

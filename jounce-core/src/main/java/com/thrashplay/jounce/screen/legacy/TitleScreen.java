@@ -4,7 +4,7 @@ import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
 import com.thrashplay.jounce.entity.ai.BalancedAiPaddleController;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
-import com.thrashplay.luna.api.engine.EntityManagerScreen;
+import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.ui.Button;
 import com.thrashplay.luna.api.ui.ButtonAdapter;
@@ -16,7 +16,7 @@ import com.thrashplay.luna.ui.TextButton;
  *
  * @author Sean Kleinjung
  */
-public class TitleScreen extends EntityManagerScreen {
+public class TitleScreen extends DefaultScreen {
     private Jounce jounce;
     private boolean newGamePressed;
 
@@ -29,28 +29,28 @@ public class TitleScreen extends EntityManagerScreen {
         Rectangle screenBounds = new Rectangle(0, 0, 480, 320);
 
         // the screen and background
-        entityManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.addEntity(new ClearScreen(0x333333));
         GameBoard gameBoard = new GameBoard(jounce);
         gameBoard.setDrawCenterStripe(false);
-        entityManager.addEntity(gameBoard);
+        gameObjectManager.addEntity(gameBoard);
 
         // the paddles
         Paddle leftPaddle = new Paddle(jounce, Player.Left);
-        entityManager.addEntity(leftPaddle);
+        gameObjectManager.addEntity(leftPaddle);
         Paddle rightPaddle = new Paddle(jounce, Player.Right);
-        entityManager.addEntity(rightPaddle);
+        gameObjectManager.addEntity(rightPaddle);
 
         // the ball
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
-        entityManager.addEntity(ball);
+        gameObjectManager.addEntity(ball);
 
         // paddle controllers
-        entityManager.addEntity(new BallChasingPaddleController(leftPaddle, ball));
-        entityManager.addEntity(new BalancedAiPaddleController(jounce, rightPaddle, ball));
+        gameObjectManager.addEntity(new BallChasingPaddleController(leftPaddle, ball));
+        gameObjectManager.addEntity(new BalancedAiPaddleController(jounce, rightPaddle, ball));
 
         // the score
 //        entityManager.addEntity(new ScoreBehavior(jounce, ball));
-        entityManager.addEntity(new TitleText(jounce));
+        gameObjectManager.addEntity(new TitleText(jounce));
 
         Button newGameButton = new TextButton(jounce.getMultiTouchManager(), "New Game", screenBounds.getCenterX() - (125 / 2), screenBounds.getBottom() - 160, 125, 50);
         newGameButton.addButtonListener(new ButtonAdapter() {
@@ -59,7 +59,7 @@ public class TitleScreen extends EntityManagerScreen {
                 newGamePressed = true;
             }
         });
-        entityManager.addEntity(newGameButton);
+        gameObjectManager.addEntity(newGameButton);
         newGamePressed = false;
 
         jounce.clearScores();
@@ -67,7 +67,7 @@ public class TitleScreen extends EntityManagerScreen {
 
     @Override
     public void shutdown() {
-        entityManager.removeAll();
+        gameObjectManager.unregisterAll();
     }
 
     @Override
