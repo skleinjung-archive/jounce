@@ -13,7 +13,7 @@ import com.thrashplay.luna.api.component.Position;
 import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.input.BackButtonListener;
-import com.thrashplay.luna.api.physics.CollisionDetector;
+import com.thrashplay.luna.api.physics.BoundingBoxCollisionDetector;
 import com.thrashplay.luna.renderable.ClearScreen;
 
 /**
@@ -60,7 +60,7 @@ public class MatchScreen extends DefaultScreen {
         gameObjectManager.addEntity(gameObjectFactory.createRightPaddle(new DelayedBallChasingPaddleController(jounce, gameObjectManager)));
 
         gameObjectManager.addEntity(new BallSpawner(gameObjectManager, gameObjectFactory, 2000));
-        gameObjectManager.addEntity(new CollisionDetector(gameObjectManager));
+        gameObjectManager.addEntity(new BoundingBoxCollisionDetector(gameObjectManager));
 
         // title and new game button
         gameObjectManager.addEntity(new ScoreDisplay(jounce));

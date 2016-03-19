@@ -12,19 +12,19 @@ import com.thrashplay.luna.api.geom.Rectangle;
  */
 public class PaddleCollisionHandler implements CollisionHandler {
     @Override
-    public void handleCollision(GameObject ourObject, GameObject otherObject, Rectangle ourBoundingBox, Rectangle otherBoundingBox) {
+    public void handleCollision(GameObject ourObject, GameObject otherObject, Rectangle ourBoundingBox, Rectangle otherBoundingBox, Direction direction) {
         Position paddlePosition = ourObject.getComponent(Position.class);
         Movement paddleMovement = ourObject.getComponent(Movement.class);
 
         Collider otherCollisionConfig = otherObject.getComponent(Collider.class);
         switch (otherCollisionConfig.getCategory()) {
             case CollisionCategory.TOP_WALL:
-                paddlePosition.setY(otherBoundingBox.getY() + otherBoundingBox.getHeight());
+                paddlePosition.setTop(otherBoundingBox.getY() + otherBoundingBox.getHeight());
                 paddleMovement.setVelocityY(0);
                 break;
 
             case CollisionCategory.BOTTOM_WALL:
-                paddlePosition.setY(otherBoundingBox.getY() - paddlePosition.getHeight());
+                paddlePosition.setTop(otherBoundingBox.getY() - paddlePosition.getHeight());
                 paddleMovement.setVelocityY(0);
                 break;
         }

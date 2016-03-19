@@ -23,7 +23,7 @@ public class BallCollisionHandler implements CollisionHandler {
     }
 
     @Override
-    public void handleCollision(GameObject ourObject, GameObject otherObject, Rectangle ourBoundingBox, Rectangle otherBoundingBox) {
+    public void handleCollision(GameObject ourObject, GameObject otherObject, Rectangle ourBoundingBox, Rectangle otherBoundingBox, Direction direction) {
         Position ballPosition = ourObject.getComponent(Position.class);
         Movement ballMovement = ourObject.getComponent(Movement.class);
         Collider otherCollisionConfig = otherObject.getComponent(Collider.class);
