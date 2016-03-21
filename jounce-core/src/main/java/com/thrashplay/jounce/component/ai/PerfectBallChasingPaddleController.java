@@ -39,12 +39,9 @@ public class PerfectBallChasingPaddleController extends MoveToDestinationPaddleC
     }
 
     public Position getBallPosition() {
-        for (Object entity : gameObjectManager.getEntities()) {
-            if (entity instanceof GameObject) {
-                GameObject gameObject = (GameObject) entity;
-                if (GameObjectFactory.ID_BALL.equals(gameObject.getId())) {
-                    return gameObject.getComponent(Position.class);
-                }
+        for (GameObject gameObject : gameObjectManager.getGameObjects()) {
+            if (GameObjectFactory.ID_BALL.equals(gameObject.getId())) {
+                return gameObject.getComponent(Position.class);
             }
         }
 
