@@ -13,7 +13,7 @@ import com.thrashplay.luna.api.component.Position;
 import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.input.BackButtonListener;
-import com.thrashplay.luna.api.physics.BoundingBoxCollisionDetector;
+import com.thrashplay.luna.api.collision.BoundingBoxCollisionDetector;
 import com.thrashplay.luna.renderable.ClearScreen;
 
 /**

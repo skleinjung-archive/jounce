@@ -2,6 +2,7 @@ package com.thrashplay.jounce.entity;
 
 import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.component.*;
+import com.thrashplay.luna.api.collision.CollisionHandler;
 import com.thrashplay.luna.api.component.*;
 import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.engine.GameObjectManager;
