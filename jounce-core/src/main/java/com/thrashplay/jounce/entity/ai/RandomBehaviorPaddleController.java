@@ -37,7 +37,7 @@ public class RandomBehaviorPaddleController implements Updateable {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(float delta) {
         if (System.currentTimeMillis() > behaviorEndTime) {
             changeBehavior();
         }

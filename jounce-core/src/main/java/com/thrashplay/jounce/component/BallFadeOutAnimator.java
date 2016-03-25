@@ -18,7 +18,7 @@ public class BallFadeOutAnimator implements UpdateableComponent {
     }
 
     @Override
-    public void update(GameObject gameObject, long delta) {
+    public void update(GameObject gameObject, float delta) {
         Position position = gameObject.getComponent(Position.class);
         position.setWidth((int) (position.getWidth() * 0.83));
         position.setHeight((int) (position.getHeight() * 0.83));

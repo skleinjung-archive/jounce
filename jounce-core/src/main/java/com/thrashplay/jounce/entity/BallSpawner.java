@@ -35,7 +35,7 @@ public class BallSpawner implements Updateable {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(float delta) {
         if (shouldSpawnBall()) {
             gameObjectManager.addEntity(gameObjectFactory.createBall());
             respawnTime = -1;

@@ -22,7 +22,7 @@ public class BallChasingPaddleController implements Updateable {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(float delta) {
         int maxVelocity = (int) ((paddle.getMaxVelocity() / 4f) * 2);
 
         Rectangle paddleBounds = paddle.getBounds();
