@@ -29,11 +29,11 @@ public class PerfectBallChasingPaddleController extends MoveToDestinationPaddleC
 
         // ball position can be null if we are waiting for a ball to spawn
         if (ballPosition != null) {
-            int ballCenterY = ballPosition.getY() + (ballPosition.getHeight() / 2);
+            int ballCenterY = (int) ballPosition.getY() + (ballPosition.getHeight() / 2);
             return ballCenterY;
         } else {
             // no ball on gameboard currently, just stay where we are
-            int paddleCenterY = position.getY() + (position.getHeight() / 2);
+            int paddleCenterY = (int) position.getY() + (position.getHeight() / 2);
             return paddleCenterY;
         }
     }

@@ -19,7 +19,7 @@ public class TouchPaddleController implements UpdateableComponent {
     }
 
     @Override
-    public void update(GameObject gameObject) {
+    public void update(GameObject gameObject, float delta) {
         Movement movement = gameObject.getComponent(Movement.class);
 
         int velocity = 0;

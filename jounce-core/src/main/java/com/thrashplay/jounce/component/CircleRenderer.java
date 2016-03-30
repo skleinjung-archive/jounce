@@ -52,8 +52,8 @@ public class CircleRenderer implements RenderableComponent {
         }
 
         int radius = position.getWidth() / 2;
-        int centerX = position.getX() + radius;
-        int centerY = position.getY() + radius;
+        int centerX = (int) position.getX() + radius;
+        int centerY = (int) position.getY() + radius;
 
         if (fill) {
             graphics.fillCircle(centerX, centerY, radius, color);

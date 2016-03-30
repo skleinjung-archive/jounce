@@ -35,7 +35,7 @@ public class DelayedBallChasingPaddleController extends MissingBallChasingContro
         }
 
         // wait longer, stay where we are
-        int paddleCenterY = position.getY() + (position.getHeight() / 2);
+        int paddleCenterY = (int) position.getY() + (position.getHeight() / 2);
         return paddleCenterY;
     }
 }

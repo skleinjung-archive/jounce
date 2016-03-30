@@ -37,7 +37,7 @@ public class BallSpawner implements Updateable {
     @Override
     public void update(float delta) {
         if (shouldSpawnBall()) {
-            gameObjectManager.addEntity(gameObjectFactory.createBall());
+            gameObjectManager.register(gameObjectFactory.createBall());
             respawnTime = -1;
         } else if (respawnTime == -1 && !ballExists()) {
             respawnTime = System.currentTimeMillis() + respawnDelay;
@@ -45,11 +45,9 @@ public class BallSpawner implements Updateable {
     }
 
     private boolean ballExists() {
-        for (Object entity : gameObjectManager.getEntities()) {
-            if (entity instanceof GameObject) {
-                if (GameObjectFactory.ID_BALL.equals(((GameObject) entity).getId())) {
-                    return true;
-                }
+        for (GameObject gameObject : gameObjectManager.getGameObjects()) {
+            if (GameObjectFactory.ID_BALL.equals(gameObject.getId())) {
+                return true;
             }
         }
         return false;

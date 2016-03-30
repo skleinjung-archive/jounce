@@ -47,9 +47,9 @@ public class RectangleRenderer implements RenderableComponent {
     public void render(Graphics graphics, GameObject gameObject) {
         Position position = gameObject.getComponent(Position.class);
         if (fill) {
-            graphics.fillRect(position.getX(), position.getY(), position.getWidth(), position.getHeight(), color);
+            graphics.fillRect((int) position.getX(), (int) position.getY(), position.getWidth(), position.getHeight(), color);
         } else {
-            graphics.drawRect(position.getX(), position.getY(), position.getWidth(), position.getHeight(), color);
+            graphics.drawRect((int) position.getX(), (int) position.getY(), position.getWidth(), position.getHeight(), color);
         }
     }
 }

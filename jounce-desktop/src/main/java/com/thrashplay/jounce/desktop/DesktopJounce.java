@@ -30,7 +30,7 @@ public class DesktopJounce implements Jounce {
 
     public DesktopJounce(LunaCanvas canvas) {
         this.canvas = canvas;
-        this.touchManager = new MouseTouchManager(canvas);
+        this.touchManager = new MouseTouchManager(canvas, getGameBoardDimensions().getWidth(), getGameBoardDimensions().getHeight());
         this.multiTouchManager = new DesktopMultiTouchManager(touchManager);
         this.soundManager = new DesktopSoundManager();
     }

@@ -24,11 +24,11 @@ public abstract class MoveToDestinationPaddleController implements UpdateableCom
     }
 
     @Override
-    public void update(GameObject gameObject) {
+    public void update(GameObject gameObject, float delta) {
         Position position = gameObject.getComponent(Position.class);
         Movement movement = gameObject.getComponent(Movement.class);
 
-        int paddleCenterY = position.getY() + (position.getHeight() / 2);
+        int paddleCenterY = (int) position.getY() + (position.getHeight() / 2);
 
         if (paddleCenterY == currentDestination || !destinationSet) {
             currentDestination = checkBounds(position, getNextDestination(gameObject));

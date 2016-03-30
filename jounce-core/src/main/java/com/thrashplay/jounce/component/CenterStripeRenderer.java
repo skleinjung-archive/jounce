@@ -29,10 +29,10 @@ public class CenterStripeRenderer implements RenderableComponent {
     @Override
     public void render(Graphics graphics, GameObject gameObject) {
         Position position = gameObject.getComponent(Position.class);
-        graphics.drawLine(position.getX() + position.getWidth() / 2,
-                position.getY() + 5,
-                position.getX() + position.getWidth() / 2,
-                position.getY() + position.getHeight() - 5,
+        graphics.drawLine((int) position.getX() + position.getWidth() / 2,
+                (int) position.getY() + 5,
+                (int) position.getX() + position.getWidth() / 2,
+                (int) position.getY() + position.getHeight() - 5,
                 color);
     }
 }

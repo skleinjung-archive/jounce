@@ -14,6 +14,7 @@ import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.input.BackButtonListener;
 import com.thrashplay.luna.api.collision.BoundingBoxCollisionDetector;
+import com.thrashplay.luna.engine.LegacyGameObjectAdapter;
 import com.thrashplay.luna.renderable.ClearScreen;
 
 /**
@@ -42,7 +43,7 @@ public class MatchScreen extends DefaultScreen {
         GameObjectFactory gameObjectFactory = new GameObjectFactory(jounce, gameObjectManager);
 
         // the screen and background
-        gameObjectManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new ClearScreen(0x333333)));
 
         Rectangle gameBounds = jounce.getGameBoardDimensions();
 
@@ -51,19 +52,19 @@ public class MatchScreen extends DefaultScreen {
         background.addComponent(new Position(gameBounds.getLeft(), gameBounds.getTop(), gameBounds.getWidth(), gameBounds.getHeight()));
         background.addComponent(new RectangleRenderer(0xff000000, true));
         background.addComponent(new CenterStripeRenderer(0x99ffffff));
-        gameObjectManager.addEntity(background);
+        gameObjectManager.register(background);
 
         // components for the simulated match
-        gameObjectManager.addEntity(gameObjectFactory.createTopWall());
-        gameObjectManager.addEntity(gameObjectFactory.createBottomWall());
-        gameObjectManager.addEntity(gameObjectFactory.createLeftPaddle(new TouchPaddleController(jounce.getTouchManager())));
-        gameObjectManager.addEntity(gameObjectFactory.createRightPaddle(new DelayedBallChasingPaddleController(jounce, gameObjectManager)));
+        gameObjectManager.register(gameObjectFactory.createTopWall());
+        gameObjectManager.register(gameObjectFactory.createBottomWall());
+        gameObjectManager.register(gameObjectFactory.createLeftPaddle(new TouchPaddleController(jounce.getTouchManager())));
+        gameObjectManager.register(gameObjectFactory.createRightPaddle(new DelayedBallChasingPaddleController(jounce, gameObjectManager)));
 
-        gameObjectManager.addEntity(new BallSpawner(gameObjectManager, gameObjectFactory, 2000));
-        gameObjectManager.addEntity(new BoundingBoxCollisionDetector(gameObjectManager));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new BallSpawner(gameObjectManager, gameObjectFactory, 2000)));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new BoundingBoxCollisionDetector(gameObjectManager)));
 
         // title and new game button
-        gameObjectManager.addEntity(new ScoreDisplay(jounce));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new ScoreDisplay(jounce)));
 
         jounce.getBackButtonManager().addBackButtonListener(backButtonListener);
 

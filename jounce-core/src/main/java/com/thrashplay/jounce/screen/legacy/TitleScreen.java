@@ -8,6 +8,7 @@ import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.geom.Rectangle;
 import com.thrashplay.luna.api.ui.Button;
 import com.thrashplay.luna.api.ui.ButtonAdapter;
+import com.thrashplay.luna.engine.LegacyGameObjectAdapter;
 import com.thrashplay.luna.renderable.ClearScreen;
 import com.thrashplay.luna.ui.TextButton;
 
@@ -29,28 +30,28 @@ public class TitleScreen extends DefaultScreen {
         Rectangle screenBounds = new Rectangle(0, 0, 480, 320);
 
         // the screen and background
-        gameObjectManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new ClearScreen(0x333333)));
         GameBoard gameBoard = new GameBoard(jounce);
         gameBoard.setDrawCenterStripe(false);
-        gameObjectManager.addEntity(gameBoard);
+        gameObjectManager.register(new LegacyGameObjectAdapter(gameBoard));
 
         // the paddles
         Paddle leftPaddle = new Paddle(jounce, Player.Left);
-        gameObjectManager.addEntity(leftPaddle);
+        gameObjectManager.register(new LegacyGameObjectAdapter(leftPaddle));
         Paddle rightPaddle = new Paddle(jounce, Player.Right);
-        gameObjectManager.addEntity(rightPaddle);
+        gameObjectManager.register(new LegacyGameObjectAdapter(rightPaddle));
 
         // the ball
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
-        gameObjectManager.addEntity(ball);
+        gameObjectManager.register(new LegacyGameObjectAdapter(ball));
 
         // paddle controllers
-        gameObjectManager.addEntity(new BallChasingPaddleController(leftPaddle, ball));
-        gameObjectManager.addEntity(new BalancedAiPaddleController(jounce, rightPaddle, ball));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new BallChasingPaddleController(leftPaddle, ball)));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new BalancedAiPaddleController(jounce, rightPaddle, ball)));
 
         // the score
 //        entityManager.addEntity(new ScoreBehavior(jounce, ball));
-        gameObjectManager.addEntity(new TitleText(jounce));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new TitleText(jounce)));
 
         Button newGameButton = new TextButton(jounce.getMultiTouchManager(), "New Game", screenBounds.getCenterX() - (125 / 2), screenBounds.getBottom() - 160, 125, 50);
         newGameButton.addButtonListener(new ButtonAdapter() {
@@ -59,7 +60,7 @@ public class TitleScreen extends DefaultScreen {
                 newGamePressed = true;
             }
         });
-        gameObjectManager.addEntity(newGameButton);
+        gameObjectManager.register(new LegacyGameObjectAdapter(newGameButton));
         newGamePressed = false;
 
         jounce.clearScores();

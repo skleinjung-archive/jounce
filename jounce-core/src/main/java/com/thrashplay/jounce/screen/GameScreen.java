@@ -5,6 +5,7 @@ import com.thrashplay.jounce.entity.*;
 import com.thrashplay.jounce.entity.ai.BallChasingPaddleController;
 import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.input.BackButtonListener;
+import com.thrashplay.luna.engine.LegacyGameObjectAdapter;
 import com.thrashplay.luna.renderable.ClearScreen;
 
 /**
@@ -24,27 +25,27 @@ public class GameScreen extends DefaultScreen implements BackButtonListener {
     @Override
     protected void doInitialize() {
         // the screen and background
-        gameObjectManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new ClearScreen(0x333333)));
 //        entityManager.addEntity(new FpsDisplay());
-        gameObjectManager.addEntity(new GameBoard(jounce));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new GameBoard(jounce)));
 
         // the paddles
         Paddle leftPaddle = new Paddle(jounce, Player.Left);
-        gameObjectManager.addEntity(leftPaddle);
+        gameObjectManager.register(new LegacyGameObjectAdapter(leftPaddle));
         Paddle rightPaddle = new Paddle(jounce, Player.Right);
-        gameObjectManager.addEntity(rightPaddle);
+        gameObjectManager.register(new LegacyGameObjectAdapter(rightPaddle));
 
         // the ball
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
-        gameObjectManager.addEntity(ball);
+        gameObjectManager.register(new LegacyGameObjectAdapter(ball));
 //        entityManager.addEntity(new BallTrails(ball));
 
         // paddle controllers
 //        entityManager.addEntity(new TouchPaddleController(jounce, leftPaddle));
-        gameObjectManager.addEntity(new BallChasingPaddleController(rightPaddle, ball));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new BallChasingPaddleController(rightPaddle, ball)));
 
         // the score
-        gameObjectManager.addEntity(new ScoreDisplay(jounce));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new ScoreDisplay(jounce)));
         //entityManager.addEntity(new ScoreBehavior(jounce, ball));
 
 //        entityManager.addEntity(new DebugString(jounce, ball, leftPaddle));

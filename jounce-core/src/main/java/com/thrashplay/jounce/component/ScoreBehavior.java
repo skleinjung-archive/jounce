@@ -26,7 +26,7 @@ public class ScoreBehavior implements UpdateableComponent {
     }
 
     @Override
-    public void update(GameObject gameObject) {
+    public void update(GameObject gameObject, float delta) {
         Rectangle gameBoardDimensions = jounce.getGameBoardDimensions();
 
         if (!alreadyScored(gameObject)) {
@@ -43,7 +43,6 @@ public class ScoreBehavior implements UpdateableComponent {
                 outOfBoundsSound.play(1.0f);
             }
         }
-
     }
 
     private boolean alreadyScored(GameObject gameObject) {

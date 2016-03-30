@@ -4,6 +4,7 @@ import com.thrashplay.jounce.Jounce;
 import com.thrashplay.jounce.entity.*;
 import com.thrashplay.luna.api.engine.DefaultScreen;
 import com.thrashplay.luna.api.input.BackButtonListener;
+import com.thrashplay.luna.engine.LegacyGameObjectAdapter;
 import com.thrashplay.luna.renderable.ClearScreen;
 
 /**
@@ -23,11 +24,11 @@ public class VictoryScreen extends DefaultScreen implements BackButtonListener {
     @Override
     protected void doInitialize() {
         // the screen and background
-        gameObjectManager.addEntity(new ClearScreen(0x333333));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new ClearScreen(0x333333)));
 //        entityManager.addEntity(new FpsDisplay());
         GameBoard gameBoard = new GameBoard(jounce);
         gameBoard.setDrawCenterStripe(false);
-        gameObjectManager.addEntity(gameBoard);
+        gameObjectManager.register(new LegacyGameObjectAdapter(gameBoard));
 
 
         // the paddles
@@ -38,10 +39,10 @@ public class VictoryScreen extends DefaultScreen implements BackButtonListener {
         Ball ball = new Ball(jounce, leftPaddle, rightPaddle);//, jounce.getSoundManager(), leftPaddle, rightPaddle);
 
         // the score
-        gameObjectManager.addEntity(new ScoreDisplay(jounce));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new ScoreDisplay(jounce)));
 
         // the victory text
-        gameObjectManager.addEntity(new VictoryText(jounce));
+        gameObjectManager.register(new LegacyGameObjectAdapter(new VictoryText(jounce)));
 
         backButtonPressed = false;
         jounce.getBackButtonManager().addBackButtonListener(this);
