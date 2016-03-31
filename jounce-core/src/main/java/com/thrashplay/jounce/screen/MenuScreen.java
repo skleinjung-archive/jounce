@@ -6,11 +6,12 @@ import com.thrashplay.jounce.component.ai.DelayedBallChasingPaddleController;
 import com.thrashplay.jounce.entity.BallSpawner;
 import com.thrashplay.jounce.entity.GameObjectFactory;
 import com.thrashplay.jounce.entity.TitleText;
-import com.thrashplay.luna.api.engine.GameObject;
+import com.thrashplay.luna.api.collision.CrossCollisionDetector;
+import com.thrashplay.luna.api.collision.NoOpBroadPhaseCollisionDetector;
 import com.thrashplay.luna.api.component.Position;
 import com.thrashplay.luna.api.engine.DefaultScreen;
+import com.thrashplay.luna.api.engine.GameObject;
 import com.thrashplay.luna.api.geom.Rectangle;
-import com.thrashplay.luna.api.collision.BoundingBoxCollisionDetector;
 import com.thrashplay.luna.api.ui.Button;
 import com.thrashplay.luna.api.ui.ButtonAdapter;
 import com.thrashplay.luna.engine.LegacyGameObjectAdapter;
@@ -54,7 +55,10 @@ public class MenuScreen extends DefaultScreen {
         gameObjectManager.register(gameObjectFactory.createRightPaddle(new DelayedBallChasingPaddleController(jounce, gameObjectManager)));
 
         gameObjectManager.register(new LegacyGameObjectAdapter(new BallSpawner(gameObjectManager, gameObjectFactory, 2000)));
-        gameObjectManager.register(new LegacyGameObjectAdapter(new BoundingBoxCollisionDetector(gameObjectManager)));
+
+        GameObject collisionDetection = new GameObject("collision detection");
+        collisionDetection.addComponent(new NoOpBroadPhaseCollisionDetector(gameObjectManager, new CrossCollisionDetector()));
+        gameObjectManager.register(collisionDetection);
 
         // title and new game button
         gameObjectManager.register(new LegacyGameObjectAdapter(new TitleText(jounce)));
